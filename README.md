@@ -1,9 +1,9 @@
 # VB-Calculator  
-Project made for Object Oriented Programming
+A Basic Calculator featuring basic MDAS operations. This Project was made for Object Oriented Programming.
 
 Authors:  
 yzeDev & Aedri Taragon
 
 Update log:  
- - v1.0.0: (Featuring basic MDAS calculation)  
+ - v1.0.0: (Featuring basic MDAS operations)  
  - v1.0.1: Refactor of Objects  
