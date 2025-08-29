@@ -1,20 +1,6 @@
 ﻿Public Class Calculator
 
     Dim hasResult As Boolean = False
-    Private Sub Label1_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs)
-
-    End Sub
-    Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel1.Paint
-
-    End Sub
-
-    Private Sub DisplayLabel_Click(sender As Object, e As EventArgs) Handles DisplayLabel.Click
-
-    End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If hasResult Then
@@ -137,29 +123,12 @@
     End Sub
 
     Private Sub Button15_Click(sender As Object, e As EventArgs) Handles EqualBtn.Click
-        Try
-            Dim expression As String = DisplayLabel.Text
-
-            expression = expression.Replace("÷", "/")
-            expression = expression.Replace("x", "*")
-
-            Dim result As Object = New DataTable().Compute(expression, Nothing)
-            DisplayLabel.Text = result.ToString()
-            hasResult = True
-        Catch ex As Exception
-            DisplayLabel.Text = "Error"
-            hasResult = True
-        End Try
+        CalculateResult()
     End Sub
 
     Private Sub Button16_Click(sender As Object, e As EventArgs) Handles DivideBtn.Click
         hasResult = False
         DisplayLabel.Text = DisplayLabel.Text & " ÷ "
-    End Sub
-
-    Private Sub Button13_Click_1(sender As Object, e As EventArgs) Handles ClrBtn.Click
-        hasResult = False
-        DisplayLabel.Text = ""
     End Sub
 
     Private Sub Button18_Click(sender As Object, e As EventArgs) Handles DecimalBtn.Click
@@ -183,5 +152,21 @@
             DisplayLabel.Text = DisplayLabel.Text.Remove(DisplayLabel.Text.Length - 1)
             Return
         End If
+    End Sub
+    Private Sub CalculateResult()
+        Try
+            Dim expression As String = DisplayLabel.Text
+            expression = expression.Replace("÷", "/").Replace("x", "*")
+            Dim result As Object = New DataTable().Compute(expression, Nothing)
+            DisplayLabel.Text = result.ToString()
+            hasResult = True
+        Catch
+            DisplayLabel.Text = "Error"
+            hasResult = True
+        End Try
+    End Sub
+
+    Private Sub DisplayLabel_Click(sender As Object, e As EventArgs) Handles DisplayLabel.Click, DisplayLabel.Enter
+
     End Sub
 End Class
