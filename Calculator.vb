@@ -197,5 +197,40 @@
         End Try
         DisplayLabel.Select()
     End Sub
+    Private Sub Calculator_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        ' Digits (0–9)
+        If Char.IsDigit(e.KeyChar) Then
+            If hasResult Then
+                DisplayLabel.Text = ""
+                hasResult = False
+            End If
+            DisplayLabel.Text &= e.KeyChar
+        End If
+
+        ' Operators (+ - x ÷)
+        If "+-x÷".Contains(e.KeyChar) Then
+            hasResult = False
+            DisplayLabel.Text &= " " & e.KeyChar & " "
+        End If
+
+        ' Decimal point
+        If e.KeyChar = "."c Then
+            DisplayLabel.Text &= "."
+        End If
+
+        ' Backspace
+        If e.KeyChar = ChrW(Keys.Back) Then
+            If DisplayLabel.Text.Length > 0 Then
+                DisplayLabel.Text = DisplayLabel.Text.Substring(0, DisplayLabel.Text.Length - 1)
+            End If
+            e.Handled = True
+        End If
+
+        ' Enter (=)
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            CalculateResult()
+            e.Handled = True
+        End If
+    End Sub
 
 End Class

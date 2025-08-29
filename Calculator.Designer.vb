@@ -361,6 +361,7 @@ Partial Class Calculator
         ClientSize = New Size(503, 1050)
         Controls.Add(TableLayoutPanel1)
         Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        KeyPreview = True
         Name = "Calculator"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Vinas & Aedri - Calculator"
