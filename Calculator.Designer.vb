@@ -117,14 +117,12 @@ Partial Class Calculator
         ' ClrBtn
         ' 
         ClrBtn.BackColor = SystemColors.ControlLightLight
-        ClrBtn.Enabled = False
         ClrBtn.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
         ClrBtn.ForeColor = SystemColors.ControlText
         ClrBtn.Location = New Point(128, 258)
         ClrBtn.Name = "ClrBtn"
         ClrBtn.Size = New Size(119, 152)
         ClrBtn.TabIndex = 17
-        ClrBtn.TabStop = False
         ClrBtn.Text = "Clear"
         ClrBtn.UseVisualStyleBackColor = False
         ' 
@@ -293,7 +291,6 @@ Partial Class Calculator
         Button3.Name = "Button3"
         Button3.Size = New Size(119, 152)
         Button3.TabIndex = 3
-        Button3.TabStop = False
         Button3.Text = "3"
         Button3.UseVisualStyleBackColor = False
         ' 
@@ -307,7 +304,6 @@ Partial Class Calculator
         Button2.Name = "Button2"
         Button2.Size = New Size(119, 152)
         Button2.TabIndex = 2
-        Button2.TabStop = False
         Button2.Text = "2"
         Button2.UseVisualStyleBackColor = False
         ' 
@@ -335,13 +331,11 @@ Partial Class Calculator
         Button1.Name = "Button1"
         Button1.Size = New Size(119, 152)
         Button1.TabIndex = 1
-        Button1.TabStop = False
         Button1.Text = "1"
         Button1.UseVisualStyleBackColor = False
         ' 
-        ' Calculator
+        ' Form2
         ' 
-        AcceptButton = EqualBtn
         AutoScaleDimensions = New SizeF(11F, 25F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.ActiveCaptionText
@@ -349,10 +343,9 @@ Partial Class Calculator
         ClientSize = New Size(503, 1050)
         Controls.Add(TableLayoutPanel1)
         Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        KeyPreview = True
-        Name = "Calculator"
+        Name = "Form2"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Vinas & Aedri - Calculator"
+        Text = "Vinas - Calculator"
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
         ResumeLayout(False)
