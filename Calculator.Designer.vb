@@ -98,6 +98,7 @@ Partial Class Calculator
         DecimalBtn.Name = "DecimalBtn"
         DecimalBtn.Size = New Size(119, 157)
         DecimalBtn.TabIndex = 19
+        DecimalBtn.TabStop = False
         DecimalBtn.Text = "."
         DecimalBtn.UseVisualStyleBackColor = False
         ' 
@@ -111,6 +112,7 @@ Partial Class Calculator
         BackspaceBtn.Name = "BackspaceBtn"
         BackspaceBtn.Size = New Size(119, 152)
         BackspaceBtn.TabIndex = 18
+        BackspaceBtn.TabStop = False
         BackspaceBtn.Text = "←"
         BackspaceBtn.UseVisualStyleBackColor = False
         ' 
@@ -123,6 +125,7 @@ Partial Class Calculator
         ClrBtn.Name = "ClrBtn"
         ClrBtn.Size = New Size(119, 152)
         ClrBtn.TabIndex = 17
+        ClrBtn.TabStop = False
         ClrBtn.Text = "Clear"
         ClrBtn.UseVisualStyleBackColor = False
         ' 
@@ -136,6 +139,7 @@ Partial Class Calculator
         DivideBtn.Name = "DivideBtn"
         DivideBtn.Size = New Size(122, 152)
         DivideBtn.TabIndex = 16
+        DivideBtn.TabStop = False
         DivideBtn.Text = "÷"
         DivideBtn.UseVisualStyleBackColor = False
         ' 
@@ -148,6 +152,7 @@ Partial Class Calculator
         EqualBtn.Name = "EqualBtn"
         EqualBtn.Size = New Size(122, 157)
         EqualBtn.TabIndex = 15
+        EqualBtn.TabStop = False
         EqualBtn.Text = "="
         EqualBtn.UseVisualStyleBackColor = False
         ' 
@@ -161,6 +166,7 @@ Partial Class Calculator
         Button0.Name = "Button0"
         Button0.Size = New Size(119, 157)
         Button0.TabIndex = 14
+        Button0.TabStop = False
         Button0.Text = "0"
         Button0.UseVisualStyleBackColor = False
         ' 
@@ -174,6 +180,7 @@ Partial Class Calculator
         MultiplyBtn.Name = "MultiplyBtn"
         MultiplyBtn.Size = New Size(122, 152)
         MultiplyBtn.TabIndex = 12
+        MultiplyBtn.TabStop = False
         MultiplyBtn.Text = "×"
         MultiplyBtn.UseVisualStyleBackColor = False
         ' 
@@ -187,6 +194,7 @@ Partial Class Calculator
         Button9.Name = "Button9"
         Button9.Size = New Size(119, 152)
         Button9.TabIndex = 11
+        Button9.TabStop = False
         Button9.Text = "9"
         Button9.UseVisualStyleBackColor = False
         ' 
@@ -200,6 +208,7 @@ Partial Class Calculator
         Button8.Name = "Button8"
         Button8.Size = New Size(119, 152)
         Button8.TabIndex = 10
+        Button8.TabStop = False
         Button8.Text = "8"
         Button8.UseVisualStyleBackColor = False
         ' 
@@ -213,6 +222,7 @@ Partial Class Calculator
         Button7.Name = "Button7"
         Button7.Size = New Size(119, 152)
         Button7.TabIndex = 9
+        Button7.TabStop = False
         Button7.Text = "7"
         Button7.UseVisualStyleBackColor = False
         ' 
@@ -226,6 +236,7 @@ Partial Class Calculator
         MinusBtn.Name = "MinusBtn"
         MinusBtn.Size = New Size(122, 152)
         MinusBtn.TabIndex = 8
+        MinusBtn.TabStop = False
         MinusBtn.Text = "-"
         MinusBtn.UseVisualStyleBackColor = False
         ' 
@@ -239,6 +250,7 @@ Partial Class Calculator
         Button6.Name = "Button6"
         Button6.Size = New Size(119, 152)
         Button6.TabIndex = 7
+        Button6.TabStop = False
         Button6.Text = "6"
         Button6.UseVisualStyleBackColor = False
         ' 
@@ -252,6 +264,7 @@ Partial Class Calculator
         Button5.Name = "Button5"
         Button5.Size = New Size(119, 152)
         Button5.TabIndex = 6
+        Button5.TabStop = False
         Button5.Text = "5"
         Button5.UseVisualStyleBackColor = False
         ' 
@@ -265,6 +278,7 @@ Partial Class Calculator
         Button4.Name = "Button4"
         Button4.Size = New Size(119, 152)
         Button4.TabIndex = 5
+        Button4.TabStop = False
         Button4.Text = "4"
         Button4.UseVisualStyleBackColor = False
         ' 
@@ -278,6 +292,7 @@ Partial Class Calculator
         PlusBtn.Name = "PlusBtn"
         PlusBtn.Size = New Size(122, 152)
         PlusBtn.TabIndex = 4
+        PlusBtn.TabStop = False
         PlusBtn.Text = "+"
         PlusBtn.UseVisualStyleBackColor = False
         ' 
@@ -291,6 +306,7 @@ Partial Class Calculator
         Button3.Name = "Button3"
         Button3.Size = New Size(119, 152)
         Button3.TabIndex = 3
+        Button3.TabStop = False
         Button3.Text = "3"
         Button3.UseVisualStyleBackColor = False
         ' 
@@ -304,6 +320,7 @@ Partial Class Calculator
         Button2.Name = "Button2"
         Button2.Size = New Size(119, 152)
         Button2.TabIndex = 2
+        Button2.TabStop = False
         Button2.Text = "2"
         Button2.UseVisualStyleBackColor = False
         ' 
@@ -331,10 +348,11 @@ Partial Class Calculator
         Button1.Name = "Button1"
         Button1.Size = New Size(119, 152)
         Button1.TabIndex = 1
+        Button1.TabStop = False
         Button1.Text = "1"
         Button1.UseVisualStyleBackColor = False
         ' 
-        ' Form2
+        ' Calculator
         ' 
         AutoScaleDimensions = New SizeF(11F, 25F)
         AutoScaleMode = AutoScaleMode.Font
@@ -343,9 +361,9 @@ Partial Class Calculator
         ClientSize = New Size(503, 1050)
         Controls.Add(TableLayoutPanel1)
         Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Name = "Form2"
+        Name = "Calculator"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Vinas - Calculator"
+        Text = "Vinas & Aedri - Calculator"
         TableLayoutPanel1.ResumeLayout(False)
         TableLayoutPanel1.PerformLayout()
         ResumeLayout(False)

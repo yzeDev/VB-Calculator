@@ -1,19 +1,9 @@
 ﻿Public Class Calculator
 
     Dim hasResult As Boolean = False
-    Private Sub Label1_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs)
-
-    End Sub
-    Private Sub TableLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles TableLayoutPanel1.Paint
-
-    End Sub
-
-    Private Sub DisplayLabel_Click(sender As Object, e As EventArgs) Handles DisplayLabel.Click
-
+    Private Sub Calculator_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.ActiveControl = Nothing
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -24,6 +14,7 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "1"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -34,6 +25,7 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "2"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -44,11 +36,13 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "3"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles PlusBtn.Click
         hasResult = False
         DisplayLabel.Text = DisplayLabel.Text & " + "
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button4.Click
@@ -59,6 +53,7 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "4"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button5.Click
@@ -69,6 +64,7 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "5"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button6.Click
@@ -79,11 +75,13 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "6"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles MinusBtn.Click
         hasResult = False
         DisplayLabel.Text = DisplayLabel.Text & " - "
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button7.Click
@@ -94,6 +92,7 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "7"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button8.Click
@@ -104,6 +103,7 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "8"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button9.Click
@@ -114,16 +114,19 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "9"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles MultiplyBtn.Click
         hasResult = False
         DisplayLabel.Text = DisplayLabel.Text & " x "
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button13_Click(sender As Object, e As EventArgs) Handles ClrBtn.Click
         hasResult = False
         DisplayLabel.Text = ""
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button0.Click
@@ -134,32 +137,24 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "0"
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button15_Click(sender As Object, e As EventArgs) Handles EqualBtn.Click
-        Try
-            Dim expression As String = DisplayLabel.Text
-
-            expression = expression.Replace("÷", "/")
-            expression = expression.Replace("x", "*")
-
-            Dim result As Object = New DataTable().Compute(expression, Nothing)
-            DisplayLabel.Text = result.ToString()
-            hasResult = True
-        Catch ex As Exception
-            DisplayLabel.Text = "Error"
-            hasResult = True
-        End Try
+        CalculateResult()
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button16_Click(sender As Object, e As EventArgs) Handles DivideBtn.Click
         hasResult = False
         DisplayLabel.Text = DisplayLabel.Text & " ÷ "
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button13_Click_1(sender As Object, e As EventArgs) Handles ClrBtn.Click
         hasResult = False
         DisplayLabel.Text = ""
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button18_Click(sender As Object, e As EventArgs) Handles DecimalBtn.Click
@@ -170,6 +165,7 @@
         Else
             DisplayLabel.Text = DisplayLabel.Text & "."
         End If
+        DisplayLabel.Select()
     End Sub
 
     Private Sub Button17_Click(sender As Object, e As EventArgs) Handles BackspaceBtn.Click
@@ -183,5 +179,23 @@
             DisplayLabel.Text = DisplayLabel.Text.Remove(DisplayLabel.Text.Length - 1)
             Return
         End If
+        DisplayLabel.Select()
     End Sub
+    Private Sub CalculateResult()
+        Try
+            Dim expression As String = DisplayLabel.Text
+
+            expression = expression.Replace("÷", "/")
+            expression = expression.Replace("x", "*")
+
+            Dim result As Object = New DataTable().Compute(expression, Nothing)
+            DisplayLabel.Text = result.ToString()
+            hasResult = True
+        Catch ex As Exception
+            DisplayLabel.Text = "Error"
+            hasResult = True
+        End Try
+        DisplayLabel.Select()
+    End Sub
+
 End Class
