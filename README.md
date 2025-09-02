@@ -17,3 +17,4 @@ Update log:
 	- v1.2.5: Fixed an issue with multiplication and division not being able to be chained properly for keyboard input  
 	- v1.2.6: Fixed an issue with equal logic   
 	- v1.3.6: New GUI design  
+	- v1.3.7: Fixed an issue with the decimal being spammed  

@@ -21,13 +21,26 @@
         If hasResult Then
             ' Starting a new calculation after showing a result
             CurrentResultLabel.Text = ""
-            PreviousResultLabel.Text = ""     ' <<< clear the top line
+            PreviousResultLabel.Text = ""
             hasResult = False
+        End If
+
+        ' Prevent multiple decimals in the current number
+        If btn.Text = "." Then
+            If CurrentResultLabel.Text.Contains(".") Then
+                Return ' skip adding another decimal
+            End If
+
+            ' If starting with a decimal, add "0." instead of just "."
+            If CurrentResultLabel.Text = "" Then
+                CurrentResultLabel.Text = "0"
+            End If
         End If
 
         CurrentResultLabel.Text &= btn.Text
         CurrentResultLabel.Select()
     End Sub
+
 
 
     ' ========= OPERATOR BUTTONS =========
@@ -179,6 +192,19 @@
             BackspaceBtn_Click(Nothing, Nothing)
             e.Handled = True
         End If
+
+        If e.KeyChar = "."c Then
+            If CurrentResultLabel.Text.Contains(".") Then
+                e.Handled = True
+                Return
+            End If
+            If CurrentResultLabel.Text = "" Then
+                CurrentResultLabel.Text = "0"
+            End If
+            CurrentResultLabel.Text &= "."
+            e.Handled = True
+        End If
+
     End Sub
 
     ' Handles special keys (like numpad multiply/divide)
