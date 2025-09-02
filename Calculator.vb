@@ -12,20 +12,23 @@
 
     ' ========= NUMBER BUTTONS =========
     Private Sub NumberButton_Click(sender As Object, e As EventArgs) _
-        Handles Button0.Click, Button1.Click, Button2.Click, Button3.Click,
-                Button4.Click, Button5.Click, Button6.Click, Button7.Click,
-                Button8.Click, Button9.Click, DecimalBtn.Click
+    Handles Button0.Click, Button1.Click, Button2.Click, Button3.Click,
+            Button4.Click, Button5.Click, Button6.Click, Button7.Click,
+            Button8.Click, Button9.Click, DecimalBtn.Click
 
         Dim btn As Button = CType(sender, Button)
 
         If hasResult Then
+            ' Starting a new calculation after showing a result
             CurrentResultLabel.Text = ""
+            PreviousResultLabel.Text = ""     ' <<< clear the top line
             hasResult = False
         End If
 
         CurrentResultLabel.Text &= btn.Text
         CurrentResultLabel.Select()
     End Sub
+
 
     ' ========= OPERATOR BUTTONS =========
     Private Sub OperatorButton_Click(sender As Object, e As EventArgs) _
@@ -77,34 +80,52 @@
 
     ' ========= EQUAL BUTTON =========
     Private Sub EqualBtn_Click(sender As Object, e As EventArgs) Handles EqualBtn.Click
-        If Double.TryParse(CurrentResultLabel.Text, secondNum) Then
-            Dim result As Double
-
-            Select Case operation
-                Case "+"
-                    result = firstNum + secondNum
-                Case "-"
-                    result = firstNum - secondNum
-                Case "x", "×"
-                    result = firstNum * secondNum
-                Case "÷", "/"
-                    If secondNum <> 0 Then
-                        result = firstNum / secondNum
-                    Else
-                        MessageBox.Show("Cannot divide by zero!")
-                        Exit Sub
-                    End If
-                Case Else
-                    Exit Sub
-            End Select
-
-            PreviousResultLabel.Text &= " " & secondNum.ToString() & " ="
-            CurrentResultLabel.Text = result.ToString()
-            hasResult = True
+        ' If there is no pending operation, treat '=' as "clear the previous expression"
+        If String.IsNullOrEmpty(operation) Then
+            If PreviousResultLabel.Text <> "" Then
+                PreviousResultLabel.Text = ""   ' <<< remove "… ="
+            End If
+            CurrentResultLabel.Select()
+            Return
         End If
 
+        ' Need a second number to compute
+        If Not Double.TryParse(CurrentResultLabel.Text, secondNum) Then
+            CurrentResultLabel.Select()
+            Return
+        End If
+
+        Dim result As Double
+        Select Case operation
+            Case "+"
+                result = firstNum + secondNum
+            Case "-"
+                result = firstNum - secondNum
+            Case "x", "×"
+                result = firstNum * secondNum
+            Case "÷", "/"
+                If secondNum = 0 Then
+                    MessageBox.Show("Cannot divide by zero!")
+                    CurrentResultLabel.Select()
+                    Return
+                End If
+                result = firstNum / secondNum
+            Case Else
+                CurrentResultLabel.Select()
+                Return
+        End Select
+
+        ' Show the full equation once
+        PreviousResultLabel.Text = $"{firstNum} {operation} {secondNum} ="
+        CurrentResultLabel.Text = result.ToString()
+
+        ' Reset pending operation so pressing '=' again won't append " = result" again
+        operation = ""
+        firstNum = result          ' lets you pick a new operator to continue from the result
+        hasResult = True
         CurrentResultLabel.Select()
     End Sub
+
 
     ' ========= CLEAR BUTTON =========
     Private Sub ClrBtn_Click(sender As Object, e As EventArgs) Handles ClrBtn.Click
