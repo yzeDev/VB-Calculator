@@ -23,6 +23,7 @@ Partial Class Calculator
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         TableLayoutPanel1 = New TableLayoutPanel()
+        PreviousResultLabel = New Label()
         DecimalBtn = New Button()
         BackspaceBtn = New Button()
         ClrBtn = New Button()
@@ -40,7 +41,7 @@ Partial Class Calculator
         PlusBtn = New Button()
         Button3 = New Button()
         Button2 = New Button()
-        DisplayLabel = New Label()
+        CurrentResultLabel = New Label()
         Button1 = New Button()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
@@ -48,55 +49,75 @@ Partial Class Calculator
         ' TableLayoutPanel1
         ' 
         TableLayoutPanel1.AutoSize = True
-        TableLayoutPanel1.BackColor = SystemColors.InactiveBorder
+        TableLayoutPanel1.BackColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
         TableLayoutPanel1.ColumnCount = 4
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
-        TableLayoutPanel1.Controls.Add(DecimalBtn, 2, 5)
-        TableLayoutPanel1.Controls.Add(BackspaceBtn, 2, 1)
-        TableLayoutPanel1.Controls.Add(ClrBtn, 1, 1)
-        TableLayoutPanel1.Controls.Add(DivideBtn, 3, 4)
-        TableLayoutPanel1.Controls.Add(EqualBtn, 3, 5)
-        TableLayoutPanel1.Controls.Add(Button0, 1, 5)
-        TableLayoutPanel1.Controls.Add(MultiplyBtn, 3, 3)
-        TableLayoutPanel1.Controls.Add(Button9, 2, 4)
-        TableLayoutPanel1.Controls.Add(Button8, 1, 4)
-        TableLayoutPanel1.Controls.Add(Button7, 0, 4)
-        TableLayoutPanel1.Controls.Add(MinusBtn, 3, 2)
-        TableLayoutPanel1.Controls.Add(Button6, 2, 3)
-        TableLayoutPanel1.Controls.Add(Button5, 1, 3)
-        TableLayoutPanel1.Controls.Add(Button4, 0, 3)
-        TableLayoutPanel1.Controls.Add(PlusBtn, 3, 1)
-        TableLayoutPanel1.Controls.Add(Button3, 2, 2)
-        TableLayoutPanel1.Controls.Add(Button2, 1, 2)
-        TableLayoutPanel1.Controls.Add(DisplayLabel, 0, 0)
-        TableLayoutPanel1.Controls.Add(Button1, 0, 2)
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 20.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 20.0F))
+        TableLayoutPanel1.Controls.Add(PreviousResultLabel, 0, 0)
+        TableLayoutPanel1.Controls.Add(DecimalBtn, 0, 6)
+        TableLayoutPanel1.Controls.Add(BackspaceBtn, 2, 2)
+        TableLayoutPanel1.Controls.Add(ClrBtn, 0, 2)
+        TableLayoutPanel1.Controls.Add(DivideBtn, 3, 5)
+        TableLayoutPanel1.Controls.Add(EqualBtn, 2, 6)
+        TableLayoutPanel1.Controls.Add(Button0, 1, 6)
+        TableLayoutPanel1.Controls.Add(MultiplyBtn, 3, 4)
+        TableLayoutPanel1.Controls.Add(Button9, 2, 5)
+        TableLayoutPanel1.Controls.Add(Button8, 1, 5)
+        TableLayoutPanel1.Controls.Add(Button7, 0, 5)
+        TableLayoutPanel1.Controls.Add(MinusBtn, 3, 3)
+        TableLayoutPanel1.Controls.Add(Button6, 2, 4)
+        TableLayoutPanel1.Controls.Add(Button5, 1, 4)
+        TableLayoutPanel1.Controls.Add(Button4, 0, 4)
+        TableLayoutPanel1.Controls.Add(PlusBtn, 3, 2)
+        TableLayoutPanel1.Controls.Add(Button3, 2, 3)
+        TableLayoutPanel1.Controls.Add(Button2, 1, 3)
+        TableLayoutPanel1.Controls.Add(CurrentResultLabel, 0, 1)
+        TableLayoutPanel1.Controls.Add(Button1, 0, 3)
         TableLayoutPanel1.Dock = DockStyle.Fill
-        TableLayoutPanel1.Font = New Font("Yu Gothic", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        TableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.FixedSize
+        TableLayoutPanel1.Font = New Font("Yu Gothic", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        TableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.AddColumns
         TableLayoutPanel1.Location = New Point(0, 0)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
-        TableLayoutPanel1.RowCount = 6
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 24.35299F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.1294031F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.1294031F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.1294031F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.1294031F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.1294031F))
-        TableLayoutPanel1.Size = New Size(503, 1050)
+        TableLayoutPanel1.RowCount = 7
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 11.0284643F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 11.0284643F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.5886164F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.5886164F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.5886164F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.5886164F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 15.5886145F))
+        TableLayoutPanel1.Size = New Size(284, 411)
         TableLayoutPanel1.TabIndex = 0
+        ' 
+        ' PreviousResultLabel
+        ' 
+        PreviousResultLabel.AutoSize = True
+        PreviousResultLabel.BackColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
+        TableLayoutPanel1.SetColumnSpan(PreviousResultLabel, 4)
+        PreviousResultLabel.Dock = DockStyle.Fill
+        PreviousResultLabel.Font = New Font("Segoe UI Variable Display", 8.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        PreviousResultLabel.ForeColor = SystemColors.ControlLightLight
+        PreviousResultLabel.Location = New Point(3, 0)
+        PreviousResultLabel.Name = "PreviousResultLabel"
+        PreviousResultLabel.Size = New Size(278, 45)
+        PreviousResultLabel.TabIndex = 20
+        PreviousResultLabel.TextAlign = ContentAlignment.BottomRight
         ' 
         ' DecimalBtn
         ' 
-        DecimalBtn.BackColor = SystemColors.ControlLightLight
+        DecimalBtn.BackColor = Color.Gray
         DecimalBtn.Dock = DockStyle.Fill
-        DecimalBtn.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        DecimalBtn.ForeColor = SystemColors.ControlText
-        DecimalBtn.Location = New Point(253, 890)
+        DecimalBtn.FlatAppearance.BorderSize = 0
+        DecimalBtn.FlatStyle = FlatStyle.Flat
+        DecimalBtn.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        DecimalBtn.ForeColor = SystemColors.ControlLightLight
+        DecimalBtn.Location = New Point(3, 349)
         DecimalBtn.Name = "DecimalBtn"
-        DecimalBtn.Size = New Size(119, 157)
+        DecimalBtn.Size = New Size(65, 59)
         DecimalBtn.TabIndex = 19
         DecimalBtn.TabStop = False
         DecimalBtn.Text = "."
@@ -104,13 +125,15 @@ Partial Class Calculator
         ' 
         ' BackspaceBtn
         ' 
-        BackspaceBtn.BackColor = SystemColors.ControlLightLight
+        BackspaceBtn.BackColor = Color.DimGray
         BackspaceBtn.Dock = DockStyle.Fill
-        BackspaceBtn.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        BackspaceBtn.ForeColor = SystemColors.ControlText
-        BackspaceBtn.Location = New Point(253, 258)
+        BackspaceBtn.FlatAppearance.BorderSize = 0
+        BackspaceBtn.FlatStyle = FlatStyle.Flat
+        BackspaceBtn.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        BackspaceBtn.ForeColor = SystemColors.ControlLightLight
+        BackspaceBtn.Location = New Point(145, 93)
         BackspaceBtn.Name = "BackspaceBtn"
-        BackspaceBtn.Size = New Size(119, 152)
+        BackspaceBtn.Size = New Size(65, 58)
         BackspaceBtn.TabIndex = 18
         BackspaceBtn.TabStop = False
         BackspaceBtn.Text = "←"
@@ -118,12 +141,16 @@ Partial Class Calculator
         ' 
         ' ClrBtn
         ' 
-        ClrBtn.BackColor = SystemColors.ControlLightLight
-        ClrBtn.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        ClrBtn.ForeColor = SystemColors.ControlText
-        ClrBtn.Location = New Point(128, 258)
+        ClrBtn.BackColor = Color.DimGray
+        TableLayoutPanel1.SetColumnSpan(ClrBtn, 2)
+        ClrBtn.Dock = DockStyle.Fill
+        ClrBtn.FlatAppearance.BorderSize = 0
+        ClrBtn.FlatStyle = FlatStyle.Flat
+        ClrBtn.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        ClrBtn.ForeColor = SystemColors.ControlLightLight
+        ClrBtn.Location = New Point(3, 93)
         ClrBtn.Name = "ClrBtn"
-        ClrBtn.Size = New Size(119, 152)
+        ClrBtn.Size = New Size(136, 58)
         ClrBtn.TabIndex = 17
         ClrBtn.TabStop = False
         ClrBtn.Text = "Clear"
@@ -131,13 +158,15 @@ Partial Class Calculator
         ' 
         ' DivideBtn
         ' 
-        DivideBtn.BackColor = SystemColors.ControlLightLight
+        DivideBtn.BackColor = Color.DimGray
         DivideBtn.Dock = DockStyle.Fill
-        DivideBtn.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        DivideBtn.ForeColor = SystemColors.ControlText
-        DivideBtn.Location = New Point(378, 732)
+        DivideBtn.FlatAppearance.BorderSize = 0
+        DivideBtn.FlatStyle = FlatStyle.Flat
+        DivideBtn.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        DivideBtn.ForeColor = SystemColors.ControlLightLight
+        DivideBtn.Location = New Point(216, 285)
         DivideBtn.Name = "DivideBtn"
-        DivideBtn.Size = New Size(122, 152)
+        DivideBtn.Size = New Size(65, 58)
         DivideBtn.TabIndex = 16
         DivideBtn.TabStop = False
         DivideBtn.Text = "÷"
@@ -146,11 +175,15 @@ Partial Class Calculator
         ' EqualBtn
         ' 
         EqualBtn.BackColor = Color.IndianRed
+        TableLayoutPanel1.SetColumnSpan(EqualBtn, 2)
         EqualBtn.Dock = DockStyle.Fill
-        EqualBtn.Font = New Font("Segoe UI Variable Display", 9F, FontStyle.Bold)
-        EqualBtn.Location = New Point(378, 890)
+        EqualBtn.FlatAppearance.BorderSize = 0
+        EqualBtn.FlatStyle = FlatStyle.Flat
+        EqualBtn.Font = New Font("Segoe UI Variable Display", 9.0F, FontStyle.Bold)
+        EqualBtn.ForeColor = SystemColors.ControlLightLight
+        EqualBtn.Location = New Point(145, 349)
         EqualBtn.Name = "EqualBtn"
-        EqualBtn.Size = New Size(122, 157)
+        EqualBtn.Size = New Size(136, 59)
         EqualBtn.TabIndex = 15
         EqualBtn.TabStop = False
         EqualBtn.Text = "="
@@ -158,13 +191,15 @@ Partial Class Calculator
         ' 
         ' Button0
         ' 
-        Button0.BackColor = SystemColors.ControlLightLight
+        Button0.BackColor = Color.Gray
         Button0.Dock = DockStyle.Fill
-        Button0.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button0.ForeColor = SystemColors.ControlText
-        Button0.Location = New Point(128, 890)
+        Button0.FlatAppearance.BorderSize = 0
+        Button0.FlatStyle = FlatStyle.Flat
+        Button0.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button0.ForeColor = SystemColors.ControlLightLight
+        Button0.Location = New Point(74, 349)
         Button0.Name = "Button0"
-        Button0.Size = New Size(119, 157)
+        Button0.Size = New Size(65, 59)
         Button0.TabIndex = 14
         Button0.TabStop = False
         Button0.Text = "0"
@@ -172,13 +207,15 @@ Partial Class Calculator
         ' 
         ' MultiplyBtn
         ' 
-        MultiplyBtn.BackColor = SystemColors.ControlLightLight
+        MultiplyBtn.BackColor = Color.DimGray
         MultiplyBtn.Dock = DockStyle.Fill
-        MultiplyBtn.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        MultiplyBtn.ForeColor = SystemColors.ControlText
-        MultiplyBtn.Location = New Point(378, 574)
+        MultiplyBtn.FlatAppearance.BorderSize = 0
+        MultiplyBtn.FlatStyle = FlatStyle.Flat
+        MultiplyBtn.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        MultiplyBtn.ForeColor = SystemColors.ControlLightLight
+        MultiplyBtn.Location = New Point(216, 221)
         MultiplyBtn.Name = "MultiplyBtn"
-        MultiplyBtn.Size = New Size(122, 152)
+        MultiplyBtn.Size = New Size(65, 58)
         MultiplyBtn.TabIndex = 12
         MultiplyBtn.TabStop = False
         MultiplyBtn.Text = "×"
@@ -186,13 +223,15 @@ Partial Class Calculator
         ' 
         ' Button9
         ' 
-        Button9.BackColor = SystemColors.ControlLightLight
+        Button9.BackColor = Color.Gray
         Button9.Dock = DockStyle.Fill
-        Button9.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button9.ForeColor = SystemColors.ControlText
-        Button9.Location = New Point(253, 732)
+        Button9.FlatAppearance.BorderSize = 0
+        Button9.FlatStyle = FlatStyle.Flat
+        Button9.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button9.ForeColor = SystemColors.ControlLightLight
+        Button9.Location = New Point(145, 285)
         Button9.Name = "Button9"
-        Button9.Size = New Size(119, 152)
+        Button9.Size = New Size(65, 58)
         Button9.TabIndex = 11
         Button9.TabStop = False
         Button9.Text = "9"
@@ -200,13 +239,15 @@ Partial Class Calculator
         ' 
         ' Button8
         ' 
-        Button8.BackColor = SystemColors.ControlLightLight
+        Button8.BackColor = Color.Gray
         Button8.Dock = DockStyle.Fill
-        Button8.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button8.ForeColor = SystemColors.ControlText
-        Button8.Location = New Point(128, 732)
+        Button8.FlatAppearance.BorderSize = 0
+        Button8.FlatStyle = FlatStyle.Flat
+        Button8.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button8.ForeColor = SystemColors.ControlLightLight
+        Button8.Location = New Point(74, 285)
         Button8.Name = "Button8"
-        Button8.Size = New Size(119, 152)
+        Button8.Size = New Size(65, 58)
         Button8.TabIndex = 10
         Button8.TabStop = False
         Button8.Text = "8"
@@ -214,13 +255,15 @@ Partial Class Calculator
         ' 
         ' Button7
         ' 
-        Button7.BackColor = SystemColors.ControlLightLight
+        Button7.BackColor = Color.Gray
         Button7.Dock = DockStyle.Fill
-        Button7.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button7.ForeColor = SystemColors.ControlText
-        Button7.Location = New Point(3, 732)
+        Button7.FlatAppearance.BorderSize = 0
+        Button7.FlatStyle = FlatStyle.Flat
+        Button7.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button7.ForeColor = SystemColors.ControlLightLight
+        Button7.Location = New Point(3, 285)
         Button7.Name = "Button7"
-        Button7.Size = New Size(119, 152)
+        Button7.Size = New Size(65, 58)
         Button7.TabIndex = 9
         Button7.TabStop = False
         Button7.Text = "7"
@@ -228,13 +271,15 @@ Partial Class Calculator
         ' 
         ' MinusBtn
         ' 
-        MinusBtn.BackColor = SystemColors.ControlLightLight
+        MinusBtn.BackColor = Color.DimGray
         MinusBtn.Dock = DockStyle.Fill
-        MinusBtn.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        MinusBtn.ForeColor = SystemColors.ControlText
-        MinusBtn.Location = New Point(378, 416)
+        MinusBtn.FlatAppearance.BorderSize = 0
+        MinusBtn.FlatStyle = FlatStyle.Flat
+        MinusBtn.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        MinusBtn.ForeColor = SystemColors.ControlLightLight
+        MinusBtn.Location = New Point(216, 157)
         MinusBtn.Name = "MinusBtn"
-        MinusBtn.Size = New Size(122, 152)
+        MinusBtn.Size = New Size(65, 58)
         MinusBtn.TabIndex = 8
         MinusBtn.TabStop = False
         MinusBtn.Text = "-"
@@ -242,13 +287,15 @@ Partial Class Calculator
         ' 
         ' Button6
         ' 
-        Button6.BackColor = SystemColors.ControlLightLight
+        Button6.BackColor = Color.Gray
         Button6.Dock = DockStyle.Fill
-        Button6.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button6.ForeColor = SystemColors.ControlText
-        Button6.Location = New Point(253, 574)
+        Button6.FlatAppearance.BorderSize = 0
+        Button6.FlatStyle = FlatStyle.Flat
+        Button6.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button6.ForeColor = SystemColors.ControlLightLight
+        Button6.Location = New Point(145, 221)
         Button6.Name = "Button6"
-        Button6.Size = New Size(119, 152)
+        Button6.Size = New Size(65, 58)
         Button6.TabIndex = 7
         Button6.TabStop = False
         Button6.Text = "6"
@@ -256,13 +303,15 @@ Partial Class Calculator
         ' 
         ' Button5
         ' 
-        Button5.BackColor = SystemColors.ControlLightLight
+        Button5.BackColor = Color.Gray
         Button5.Dock = DockStyle.Fill
-        Button5.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button5.ForeColor = SystemColors.ControlText
-        Button5.Location = New Point(128, 574)
+        Button5.FlatAppearance.BorderSize = 0
+        Button5.FlatStyle = FlatStyle.Flat
+        Button5.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button5.ForeColor = SystemColors.ControlLightLight
+        Button5.Location = New Point(74, 221)
         Button5.Name = "Button5"
-        Button5.Size = New Size(119, 152)
+        Button5.Size = New Size(65, 58)
         Button5.TabIndex = 6
         Button5.TabStop = False
         Button5.Text = "5"
@@ -270,13 +319,15 @@ Partial Class Calculator
         ' 
         ' Button4
         ' 
-        Button4.BackColor = SystemColors.ControlLightLight
+        Button4.BackColor = Color.Gray
         Button4.Dock = DockStyle.Fill
-        Button4.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button4.ForeColor = SystemColors.ControlText
-        Button4.Location = New Point(3, 574)
+        Button4.FlatAppearance.BorderSize = 0
+        Button4.FlatStyle = FlatStyle.Flat
+        Button4.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button4.ForeColor = SystemColors.ControlLightLight
+        Button4.Location = New Point(3, 221)
         Button4.Name = "Button4"
-        Button4.Size = New Size(119, 152)
+        Button4.Size = New Size(65, 58)
         Button4.TabIndex = 5
         Button4.TabStop = False
         Button4.Text = "4"
@@ -284,13 +335,15 @@ Partial Class Calculator
         ' 
         ' PlusBtn
         ' 
-        PlusBtn.BackColor = SystemColors.ControlLightLight
+        PlusBtn.BackColor = Color.DimGray
         PlusBtn.Dock = DockStyle.Fill
-        PlusBtn.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        PlusBtn.ForeColor = SystemColors.ControlText
-        PlusBtn.Location = New Point(378, 258)
+        PlusBtn.FlatAppearance.BorderSize = 0
+        PlusBtn.FlatStyle = FlatStyle.Flat
+        PlusBtn.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        PlusBtn.ForeColor = SystemColors.ControlLightLight
+        PlusBtn.Location = New Point(216, 93)
         PlusBtn.Name = "PlusBtn"
-        PlusBtn.Size = New Size(122, 152)
+        PlusBtn.Size = New Size(65, 58)
         PlusBtn.TabIndex = 4
         PlusBtn.TabStop = False
         PlusBtn.Text = "+"
@@ -298,13 +351,15 @@ Partial Class Calculator
         ' 
         ' Button3
         ' 
-        Button3.BackColor = SystemColors.ControlLightLight
+        Button3.BackColor = Color.Gray
         Button3.Dock = DockStyle.Fill
-        Button3.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button3.ForeColor = SystemColors.ControlText
-        Button3.Location = New Point(253, 416)
+        Button3.FlatAppearance.BorderSize = 0
+        Button3.FlatStyle = FlatStyle.Flat
+        Button3.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button3.ForeColor = SystemColors.ControlLightLight
+        Button3.Location = New Point(145, 157)
         Button3.Name = "Button3"
-        Button3.Size = New Size(119, 152)
+        Button3.Size = New Size(65, 58)
         Button3.TabIndex = 3
         Button3.TabStop = False
         Button3.Text = "3"
@@ -312,41 +367,45 @@ Partial Class Calculator
         ' 
         ' Button2
         ' 
-        Button2.BackColor = SystemColors.ControlLightLight
+        Button2.BackColor = Color.Gray
         Button2.Dock = DockStyle.Fill
-        Button2.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button2.ForeColor = SystemColors.ControlText
-        Button2.Location = New Point(128, 416)
+        Button2.FlatAppearance.BorderSize = 0
+        Button2.FlatStyle = FlatStyle.Flat
+        Button2.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button2.ForeColor = SystemColors.ControlLightLight
+        Button2.Location = New Point(74, 157)
         Button2.Name = "Button2"
-        Button2.Size = New Size(119, 152)
+        Button2.Size = New Size(65, 58)
         Button2.TabIndex = 2
         Button2.TabStop = False
         Button2.Text = "2"
         Button2.UseVisualStyleBackColor = False
         ' 
-        ' DisplayLabel
+        ' CurrentResultLabel
         ' 
-        DisplayLabel.AutoSize = True
-        DisplayLabel.BackColor = Color.White
-        TableLayoutPanel1.SetColumnSpan(DisplayLabel, 4)
-        DisplayLabel.Dock = DockStyle.Fill
-        DisplayLabel.Font = New Font("Segoe UI Variable Display", 16F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DisplayLabel.ForeColor = Color.Black
-        DisplayLabel.Location = New Point(3, 0)
-        DisplayLabel.Name = "DisplayLabel"
-        DisplayLabel.Size = New Size(497, 255)
-        DisplayLabel.TabIndex = 0
-        DisplayLabel.TextAlign = ContentAlignment.BottomRight
+        CurrentResultLabel.AutoSize = True
+        CurrentResultLabel.BackColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
+        TableLayoutPanel1.SetColumnSpan(CurrentResultLabel, 4)
+        CurrentResultLabel.Dock = DockStyle.Fill
+        CurrentResultLabel.Font = New Font("Segoe UI Variable Display", 25.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        CurrentResultLabel.ForeColor = SystemColors.ControlLightLight
+        CurrentResultLabel.Location = New Point(3, 45)
+        CurrentResultLabel.Name = "CurrentResultLabel"
+        CurrentResultLabel.Size = New Size(278, 45)
+        CurrentResultLabel.TabIndex = 0
+        CurrentResultLabel.TextAlign = ContentAlignment.BottomRight
         ' 
         ' Button1
         ' 
-        Button1.BackColor = SystemColors.ControlLightLight
+        Button1.BackColor = Color.Gray
         Button1.Dock = DockStyle.Fill
-        Button1.Font = New Font("Segoe UI Variable Small Semibol", 9F, FontStyle.Bold)
-        Button1.ForeColor = SystemColors.ControlText
-        Button1.Location = New Point(3, 416)
+        Button1.FlatAppearance.BorderSize = 0
+        Button1.FlatStyle = FlatStyle.Flat
+        Button1.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
+        Button1.ForeColor = SystemColors.ControlLightLight
+        Button1.Location = New Point(3, 157)
         Button1.Name = "Button1"
-        Button1.Size = New Size(119, 152)
+        Button1.Size = New Size(65, 58)
         Button1.TabIndex = 1
         Button1.TabStop = False
         Button1.Text = "1"
@@ -354,13 +413,13 @@ Partial Class Calculator
         ' 
         ' Calculator
         ' 
-        AutoScaleDimensions = New SizeF(11F, 25F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
-        BackColor = SystemColors.ActiveCaptionText
+        BackColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
         BackgroundImageLayout = ImageLayout.Center
-        ClientSize = New Size(503, 1050)
+        ClientSize = New Size(284, 411)
         Controls.Add(TableLayoutPanel1)
-        Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         KeyPreview = True
         Name = "Calculator"
         StartPosition = FormStartPosition.CenterScreen
@@ -372,7 +431,7 @@ Partial Class Calculator
     End Sub
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Public WithEvents DisplayLabel As Label
+    Public WithEvents CurrentResultLabel As Label
     Friend WithEvents DivideBtn As Button
     Friend WithEvents EqualBtn As Button
     Friend WithEvents Button0 As Button
@@ -391,4 +450,5 @@ Partial Class Calculator
     Friend WithEvents BackspaceBtn As Button
     Friend WithEvents ClrBtn As Button
     Friend WithEvents DecimalBtn As Button
+    Public WithEvents PreviousResultLabel As Label
 End Class

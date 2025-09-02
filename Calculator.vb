@@ -1,236 +1,235 @@
 ﻿Public Class Calculator
 
     Dim hasResult As Boolean = False
+    Dim firstNum As Double
+    Dim secondNum As Double
+    Dim operation As String
+
     Private Sub Calculator_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.ActiveControl = Nothing
-        DisplayLabel.Select()
+        CurrentResultLabel.Select()
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    ' ========= NUMBER BUTTONS =========
+    Private Sub NumberButton_Click(sender As Object, e As EventArgs) _
+    Handles Button0.Click, Button1.Click, Button2.Click, Button3.Click,
+            Button4.Click, Button5.Click, Button6.Click, Button7.Click,
+            Button8.Click, Button9.Click, DecimalBtn.Click
+
+        Dim btn As Button = CType(sender, Button)
+
         If hasResult Then
-            DisplayLabel.Text = ""
+            ' Starting a new calculation after showing a result
+            CurrentResultLabel.Text = ""
+            PreviousResultLabel.Text = ""
             hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "1"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "1"
         End If
-        DisplayLabel.Select()
-    End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "2"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "2"
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "3"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "3"
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles PlusBtn.Click
-        hasResult = False
-        DisplayLabel.Text = DisplayLabel.Text & " + "
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "4"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "4"
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "5"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "5"
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "6"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "6"
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles MinusBtn.Click
-        hasResult = False
-        DisplayLabel.Text = DisplayLabel.Text & " - "
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "7"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "7"
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "8"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "8"
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "9"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "9"
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles MultiplyBtn.Click
-        hasResult = False
-        DisplayLabel.Text = DisplayLabel.Text & " x "
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles ClrBtn.Click
-        hasResult = False
-        DisplayLabel.Text = ""
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button0.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "0"
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "0"
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles EqualBtn.Click
-        CalculateResult()
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles DivideBtn.Click
-        hasResult = False
-        DisplayLabel.Text = DisplayLabel.Text & " ÷ "
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button13_Click_1(sender As Object, e As EventArgs) Handles ClrBtn.Click
-        hasResult = False
-        DisplayLabel.Text = ""
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles DecimalBtn.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            DisplayLabel.Text = DisplayLabel.Text & "."
-        Else
-            DisplayLabel.Text = DisplayLabel.Text & "."
-        End If
-        DisplayLabel.Select()
-    End Sub
-
-    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles BackspaceBtn.Click
-        If hasResult Then
-            DisplayLabel.Text = ""
-            hasResult = False
-            Return
-        ElseIf DisplayLabel.Text.Length = 0 Then
-            Return
-        ElseIf hasResult = False Then
-            DisplayLabel.Text = DisplayLabel.Text.Remove(DisplayLabel.Text.Length - 1)
-            Return
-        End If
-        DisplayLabel.Select()
-    End Sub
-    Private Sub CalculateResult()
-        Try
-            Dim expression As String = DisplayLabel.Text
-
-            expression = expression.Replace("÷", "/")
-            expression = expression.Replace("x", "*")
-
-            Dim result As Object = New DataTable().Compute(expression, Nothing)
-            DisplayLabel.Text = result.ToString()
-            hasResult = True
-        Catch ex As Exception
-            DisplayLabel.Text = "Error"
-            hasResult = True
-        End Try
-        DisplayLabel.Select()
-    End Sub
-    Private Sub Calculator_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
-        ' Digits (0–9)
-        If Char.IsDigit(e.KeyChar) Then
-            If hasResult Then
-                DisplayLabel.Text = ""
-                hasResult = False
+        ' Prevent multiple decimals in the current number
+        If btn.Text = "." Then
+            If CurrentResultLabel.Text.Contains(".") Then
+                Return ' skip adding another decimal
             End If
-            DisplayLabel.Text &= e.KeyChar
+
+            ' If starting with a decimal, add "0." instead of just "."
+            If CurrentResultLabel.Text = "" Then
+                CurrentResultLabel.Text = "0"
+            End If
         End If
 
-        ' Operators (+ - x ÷)
-        If "+-x÷".Contains(e.KeyChar) Then
-            hasResult = False
-            DisplayLabel.Text &= " " & e.KeyChar & " "
+        CurrentResultLabel.Text &= btn.Text
+        CurrentResultLabel.Select()
+    End Sub
+
+
+
+    ' ========= OPERATOR BUTTONS =========
+    Private Sub OperatorButton_Click(sender As Object, e As EventArgs) _
+    Handles PlusBtn.Click, MinusBtn.Click, MultiplyBtn.Click, DivideBtn.Click
+
+        Dim btn As Button = CType(sender, Button)
+        Dim newOperation As String = btn.Text
+
+        ' CASE 1: If operation already exists AND CurrentResultLabel has a number → calculate first
+        If operation <> "" AndAlso CurrentResultLabel.Text <> "" AndAlso Double.TryParse(CurrentResultLabel.Text, secondNum) Then
+            Dim result As Double
+            Select Case operation
+                Case "+"
+                    result = firstNum + secondNum
+                Case "-"
+                    result = firstNum - secondNum
+                Case "x", "×"
+                    result = firstNum * secondNum
+                Case "÷", "/"
+                    If secondNum <> 0 Then
+                        result = firstNum / secondNum
+                    Else
+                        MessageBox.Show("Cannot divide by zero!")
+                        Exit Sub
+                    End If
+            End Select
+
+            ' Update firstNum with result for chaining
+            firstNum = result
+            CurrentResultLabel.Text = ""
+            PreviousResultLabel.Text = firstNum.ToString() & " " & newOperation
+
+            ' CASE 2: No second number typed yet → just replace operator
+        ElseIf operation <> "" AndAlso CurrentResultLabel.Text = "" Then
+            operation = newOperation
+            PreviousResultLabel.Text = firstNum.ToString() & " " & operation
+
+            ' CASE 3: First time operator pressed (normal case)
+        ElseIf Double.TryParse(CurrentResultLabel.Text, firstNum) Then
+            CurrentResultLabel.Text = ""
+            PreviousResultLabel.Text = firstNum.ToString() & " " & newOperation
         End If
 
-        ' Decimal point
-        If e.KeyChar = "."c Then
-            DisplayLabel.Text &= "."
+        operation = newOperation
+        hasResult = False
+        CurrentResultLabel.Select()
+    End Sub
+
+
+    ' ========= EQUAL BUTTON =========
+    Private Sub EqualBtn_Click(sender As Object, e As EventArgs) Handles EqualBtn.Click
+        ' If there is no pending operation, treat '=' as "clear the previous expression"
+        If String.IsNullOrEmpty(operation) Then
+            If PreviousResultLabel.Text <> "" Then
+                PreviousResultLabel.Text = ""   ' <<< remove "… ="
+            End If
+            CurrentResultLabel.Select()
+            Return
+        End If
+
+        ' Need a second number to compute
+        If Not Double.TryParse(CurrentResultLabel.Text, secondNum) Then
+            CurrentResultLabel.Select()
+            Return
+        End If
+
+        Dim result As Double
+        Select Case operation
+            Case "+"
+                result = firstNum + secondNum
+            Case "-"
+                result = firstNum - secondNum
+            Case "x", "×"
+                result = firstNum * secondNum
+            Case "÷", "/"
+                If secondNum = 0 Then
+                    MessageBox.Show("Cannot divide by zero!")
+                    CurrentResultLabel.Select()
+                    Return
+                End If
+                result = firstNum / secondNum
+            Case Else
+                CurrentResultLabel.Select()
+                Return
+        End Select
+
+        ' Show the full equation once
+        PreviousResultLabel.Text = $"{firstNum} {operation} {secondNum} ="
+        CurrentResultLabel.Text = result.ToString()
+
+        ' Reset pending operation so pressing '=' again won't append " = result" again
+        operation = ""
+        firstNum = result          ' lets you pick a new operator to continue from the result
+        hasResult = True
+        CurrentResultLabel.Select()
+    End Sub
+
+
+    ' ========= CLEAR BUTTON =========
+    Private Sub ClrBtn_Click(sender As Object, e As EventArgs) Handles ClrBtn.Click
+        PreviousResultLabel.Text = ""
+        CurrentResultLabel.Text = ""
+        firstNum = 0
+        secondNum = 0
+        operation = ""
+        hasResult = False
+        CurrentResultLabel.Select()
+    End Sub
+
+    ' ========= BACKSPACE BUTTON =========
+    Private Sub BackspaceBtn_Click(sender As Object, e As EventArgs) Handles BackspaceBtn.Click
+        If Not hasResult AndAlso CurrentResultLabel.Text.Length > 0 Then
+            CurrentResultLabel.Text = CurrentResultLabel.Text.Substring(0, CurrentResultLabel.Text.Length - 1)
+        End If
+        CurrentResultLabel.Select()
+    End Sub
+
+    ' ========= KEYBOARD INPUT =========
+    ' Handles character input (numbers, ., +, -, *, /)
+    Private Sub Calculator_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        ' Digits and decimal
+        If Char.IsDigit(e.KeyChar) OrElse e.KeyChar = "."c Then
+            NumberButton_Click(New Button() With {.Text = e.KeyChar}, Nothing)
+        End If
+
+        ' Operators
+        Select Case e.KeyChar
+            Case "+"c, "-"c
+                OperatorButton_Click(New Button() With {.Text = e.KeyChar}, Nothing)
+
+            Case "*"c
+                ' Map * to x
+                OperatorButton_Click(New Button() With {.Text = "x"}, Nothing)
+
+            Case "/"c
+                ' Map / to ÷
+                OperatorButton_Click(New Button() With {.Text = "÷"}, Nothing)
+        End Select
+
+        ' Enter (=)
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            EqualBtn_Click(Nothing, Nothing)
+            e.Handled = True
         End If
 
         ' Backspace
         If e.KeyChar = ChrW(Keys.Back) Then
-            If DisplayLabel.Text.Length > 0 Then
-                DisplayLabel.Text = DisplayLabel.Text.Substring(0, DisplayLabel.Text.Length - 1)
-            End If
+            BackspaceBtn_Click(Nothing, Nothing)
             e.Handled = True
         End If
 
-        ' Enter (=)
-        If e.KeyChar = ChrW(Keys.Enter) Then
-            CalculateResult()
+        If e.KeyChar = "."c Then
+            If CurrentResultLabel.Text.Contains(".") Then
+                e.Handled = True
+                Return
+            End If
+            If CurrentResultLabel.Text = "" Then
+                CurrentResultLabel.Text = "0"
+            End If
+            CurrentResultLabel.Text &= "."
             e.Handled = True
         End If
+
+    End Sub
+
+    ' Handles special keys (like numpad multiply/divide)
+    Private Sub Calculator_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Multiply
+                OperatorButton_Click(New Button() With {.Text = "x"}, Nothing)
+                e.Handled = True
+
+            Case Keys.Divide
+                OperatorButton_Click(New Button() With {.Text = "÷"}, Nothing)
+                e.Handled = True
+
+            Case Keys.Add
+                OperatorButton_Click(New Button() With {.Text = "+"}, Nothing)
+                e.Handled = True
+
+            Case Keys.Subtract
+                OperatorButton_Click(New Button() With {.Text = "-"}, Nothing)
+                e.Handled = True
+
+            Case Keys.Decimal
+                NumberButton_Click(New Button() With {.Text = "."}, Nothing)
+                e.Handled = True
+        End Select
     End Sub
 
 End Class
