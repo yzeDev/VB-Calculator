@@ -19,10 +19,19 @@
         Dim btn As Button = CType(sender, Button)
 
         If hasResult Then
-            ' Starting a new calculation after showing a result
             CurrentResultLabel.Text = ""
             PreviousResultLabel.Text = ""
             hasResult = False
+        End If
+
+        If btn.Text = "." Then
+            If CurrentResultLabel.Text.Contains(".") Then
+                Return
+            End If
+
+            If CurrentResultLabel.Text = "" Then
+                CurrentResultLabel.Text = "0"
+            End If
         End If
 
         ' Prevent multiple decimals in the current number
@@ -50,7 +59,6 @@
         Dim btn As Button = CType(sender, Button)
         Dim newOperation As String = btn.Text
 
-        ' CASE 1: If operation already exists AND CurrentResultLabel has a number → calculate first
         If operation <> "" AndAlso CurrentResultLabel.Text <> "" AndAlso Double.TryParse(CurrentResultLabel.Text, secondNum) Then
             Dim result As Double
             Select Case operation
@@ -69,17 +77,14 @@
                     End If
             End Select
 
-            ' Update firstNum with result for chaining
             firstNum = result
             CurrentResultLabel.Text = ""
             PreviousResultLabel.Text = firstNum.ToString() & " " & newOperation
 
-            ' CASE 2: No second number typed yet → just replace operator
         ElseIf operation <> "" AndAlso CurrentResultLabel.Text = "" Then
             operation = newOperation
             PreviousResultLabel.Text = firstNum.ToString() & " " & operation
 
-            ' CASE 3: First time operator pressed (normal case)
         ElseIf Double.TryParse(CurrentResultLabel.Text, firstNum) Then
             CurrentResultLabel.Text = ""
             PreviousResultLabel.Text = firstNum.ToString() & " " & newOperation
@@ -93,16 +98,15 @@
 
     ' ========= EQUAL BUTTON =========
     Private Sub EqualBtn_Click(sender As Object, e As EventArgs) Handles EqualBtn.Click
-        ' If there is no pending operation, treat '=' as "clear the previous expression"
+
         If String.IsNullOrEmpty(operation) Then
             If PreviousResultLabel.Text <> "" Then
-                PreviousResultLabel.Text = ""   ' <<< remove "… ="
+                PreviousResultLabel.Text = ""
             End If
             CurrentResultLabel.Select()
             Return
         End If
 
-        ' Need a second number to compute
         If Not Double.TryParse(CurrentResultLabel.Text, secondNum) Then
             CurrentResultLabel.Select()
             Return
@@ -128,13 +132,11 @@
                 Return
         End Select
 
-        ' Show the full equation once
         PreviousResultLabel.Text = $"{firstNum} {operation} {secondNum} ="
         CurrentResultLabel.Text = result.ToString()
 
-        ' Reset pending operation so pressing '=' again won't append " = result" again
         operation = ""
-        firstNum = result          ' lets you pick a new operator to continue from the result
+        firstNum = result
         hasResult = True
         CurrentResultLabel.Select()
     End Sub
@@ -160,9 +162,7 @@
     End Sub
 
     ' ========= KEYBOARD INPUT =========
-    ' Handles character input (numbers, ., +, -, *, /)
     Private Sub Calculator_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
-        ' Digits and decimal
         If Char.IsDigit(e.KeyChar) OrElse e.KeyChar = "."c Then
             NumberButton_Click(New Button() With {.Text = e.KeyChar}, Nothing)
         End If
