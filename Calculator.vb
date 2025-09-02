@@ -126,24 +126,63 @@
     End Sub
 
     ' ========= KEYBOARD INPUT =========
+    ' Handles character input (numbers, ., +, -, *, /)
     Private Sub Calculator_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        ' Digits and decimal
         If Char.IsDigit(e.KeyChar) OrElse e.KeyChar = "."c Then
             NumberButton_Click(New Button() With {.Text = e.KeyChar}, Nothing)
         End If
 
-        If "+-x÷*/".Contains(e.KeyChar) Then
-            OperatorButton_Click(New Button() With {.Text = e.KeyChar}, Nothing)
-        End If
+        ' Operators
+        Select Case e.KeyChar
+            Case "+"c, "-"c
+                OperatorButton_Click(New Button() With {.Text = e.KeyChar}, Nothing)
 
+            Case "*"c
+                ' Map * to x
+                OperatorButton_Click(New Button() With {.Text = "x"}, Nothing)
+
+            Case "/"c
+                ' Map / to ÷
+                OperatorButton_Click(New Button() With {.Text = "÷"}, Nothing)
+        End Select
+
+        ' Enter (=)
         If e.KeyChar = ChrW(Keys.Enter) Then
             EqualBtn_Click(Nothing, Nothing)
             e.Handled = True
         End If
 
+        ' Backspace
         If e.KeyChar = ChrW(Keys.Back) Then
             BackspaceBtn_Click(Nothing, Nothing)
             e.Handled = True
         End If
+    End Sub
+
+    ' Handles special keys (like numpad multiply/divide)
+    Private Sub Calculator_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Multiply
+                OperatorButton_Click(New Button() With {.Text = "x"}, Nothing)
+                e.Handled = True
+
+            Case Keys.Divide
+                OperatorButton_Click(New Button() With {.Text = "÷"}, Nothing)
+                e.Handled = True
+
+            Case Keys.Add
+                OperatorButton_Click(New Button() With {.Text = "+"}, Nothing)
+                e.Handled = True
+
+            Case Keys.Subtract
+                OperatorButton_Click(New Button() With {.Text = "-"}, Nothing)
+                e.Handled = True
+
+            Case Keys.Decimal
+                NumberButton_Click(New Button() With {.Text = "."}, Nothing)
+                e.Handled = True
+        End Select
     End Sub
 
 End Class

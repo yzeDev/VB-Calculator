@@ -4,7 +4,7 @@ A Basic Calculator featuring basic MDAS operations. This Project was made for Ob
 Developers:  
 yzeDev & Aedri Taragon
 
-Current version: v1.2.4
+Current version: v1.2.5
 
 Update log:  
 	- v1.0.0: (Featuring basic MDAS operations)  
@@ -14,3 +14,4 @@ Update log:
 	- v1.1.3: Fixed an issue with the tablepanel layout
 	- v1.1.4: Fixed an issue operations being spammed  
 	- v1.2.4: Added another label for showing the current expression being calculated (Handles chain operations)
+	- v1.2.5: Fixed an issue with multiplication and division not being able to be chained properly for keyboard input  
