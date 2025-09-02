@@ -23,7 +23,7 @@ Partial Class Calculator
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         TableLayoutPanel1 = New TableLayoutPanel()
-        Label1 = New Label()
+        PreviousResultLabel = New Label()
         DecimalBtn = New Button()
         BackspaceBtn = New Button()
         ClrBtn = New Button()
@@ -41,7 +41,7 @@ Partial Class Calculator
         PlusBtn = New Button()
         Button3 = New Button()
         Button2 = New Button()
-        DisplayLabel = New Label()
+        CurrentResultLabel = New Label()
         Button1 = New Button()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
@@ -55,12 +55,14 @@ Partial Class Calculator
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25.0F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25.0F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25.0F))
-        TableLayoutPanel1.Controls.Add(Label1, 0, 0)
-        TableLayoutPanel1.Controls.Add(DecimalBtn, 2, 6)
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 20.0F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 20.0F))
+        TableLayoutPanel1.Controls.Add(PreviousResultLabel, 0, 0)
+        TableLayoutPanel1.Controls.Add(DecimalBtn, 0, 6)
         TableLayoutPanel1.Controls.Add(BackspaceBtn, 2, 2)
-        TableLayoutPanel1.Controls.Add(ClrBtn, 1, 2)
+        TableLayoutPanel1.Controls.Add(ClrBtn, 0, 2)
         TableLayoutPanel1.Controls.Add(DivideBtn, 3, 5)
-        TableLayoutPanel1.Controls.Add(EqualBtn, 3, 6)
+        TableLayoutPanel1.Controls.Add(EqualBtn, 2, 6)
         TableLayoutPanel1.Controls.Add(Button0, 1, 6)
         TableLayoutPanel1.Controls.Add(MultiplyBtn, 3, 4)
         TableLayoutPanel1.Controls.Add(Button9, 2, 5)
@@ -73,11 +75,11 @@ Partial Class Calculator
         TableLayoutPanel1.Controls.Add(PlusBtn, 3, 2)
         TableLayoutPanel1.Controls.Add(Button3, 2, 3)
         TableLayoutPanel1.Controls.Add(Button2, 1, 3)
-        TableLayoutPanel1.Controls.Add(DisplayLabel, 0, 1)
+        TableLayoutPanel1.Controls.Add(CurrentResultLabel, 0, 1)
         TableLayoutPanel1.Controls.Add(Button1, 0, 3)
         TableLayoutPanel1.Dock = DockStyle.Fill
         TableLayoutPanel1.Font = New Font("Yu Gothic", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        TableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.FixedSize
+        TableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.AddColumns
         TableLayoutPanel1.Location = New Point(0, 0)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 7
@@ -91,19 +93,19 @@ Partial Class Calculator
         TableLayoutPanel1.Size = New Size(503, 1050)
         TableLayoutPanel1.TabIndex = 0
         ' 
-        ' Label1
+        ' PreviousResultLabel
         ' 
-        Label1.AutoSize = True
-        Label1.BackColor = Color.White
-        TableLayoutPanel1.SetColumnSpan(Label1, 4)
-        Label1.Dock = DockStyle.Fill
-        Label1.Font = New Font("Segoe UI Variable Display", 16.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label1.ForeColor = Color.Black
-        Label1.Location = New Point(3, 0)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(497, 115)
-        Label1.TabIndex = 20
-        Label1.TextAlign = ContentAlignment.BottomRight
+        PreviousResultLabel.AutoSize = True
+        PreviousResultLabel.BackColor = Color.White
+        TableLayoutPanel1.SetColumnSpan(PreviousResultLabel, 4)
+        PreviousResultLabel.Dock = DockStyle.Fill
+        PreviousResultLabel.Font = New Font("Segoe UI Variable Display", 16.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        PreviousResultLabel.ForeColor = Color.Black
+        PreviousResultLabel.Location = New Point(3, 0)
+        PreviousResultLabel.Name = "PreviousResultLabel"
+        PreviousResultLabel.Size = New Size(497, 115)
+        PreviousResultLabel.TabIndex = 20
+        PreviousResultLabel.TextAlign = ContentAlignment.BottomRight
         ' 
         ' DecimalBtn
         ' 
@@ -111,7 +113,7 @@ Partial Class Calculator
         DecimalBtn.Dock = DockStyle.Fill
         DecimalBtn.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
         DecimalBtn.ForeColor = SystemColors.ControlText
-        DecimalBtn.Location = New Point(253, 885)
+        DecimalBtn.Location = New Point(3, 885)
         DecimalBtn.Name = "DecimalBtn"
         DecimalBtn.Size = New Size(119, 162)
         DecimalBtn.TabIndex = 19
@@ -136,12 +138,13 @@ Partial Class Calculator
         ' ClrBtn
         ' 
         ClrBtn.BackColor = SystemColors.ControlLightLight
+        TableLayoutPanel1.SetColumnSpan(ClrBtn, 2)
         ClrBtn.Dock = DockStyle.Fill
         ClrBtn.Font = New Font("Segoe UI Variable Small Semibol", 9.0F, FontStyle.Bold)
         ClrBtn.ForeColor = SystemColors.ControlText
-        ClrBtn.Location = New Point(128, 233)
+        ClrBtn.Location = New Point(3, 233)
         ClrBtn.Name = "ClrBtn"
-        ClrBtn.Size = New Size(119, 157)
+        ClrBtn.Size = New Size(244, 157)
         ClrBtn.TabIndex = 17
         ClrBtn.TabStop = False
         ClrBtn.Text = "Clear"
@@ -164,11 +167,12 @@ Partial Class Calculator
         ' EqualBtn
         ' 
         EqualBtn.BackColor = Color.IndianRed
+        TableLayoutPanel1.SetColumnSpan(EqualBtn, 2)
         EqualBtn.Dock = DockStyle.Fill
         EqualBtn.Font = New Font("Segoe UI Variable Display", 9.0F, FontStyle.Bold)
-        EqualBtn.Location = New Point(378, 885)
+        EqualBtn.Location = New Point(253, 885)
         EqualBtn.Name = "EqualBtn"
-        EqualBtn.Size = New Size(122, 162)
+        EqualBtn.Size = New Size(247, 162)
         EqualBtn.TabIndex = 15
         EqualBtn.TabStop = False
         EqualBtn.Text = "="
@@ -342,19 +346,19 @@ Partial Class Calculator
         Button2.Text = "2"
         Button2.UseVisualStyleBackColor = False
         ' 
-        ' DisplayLabel
+        ' CurrentResultLabel
         ' 
-        DisplayLabel.AutoSize = True
-        DisplayLabel.BackColor = Color.White
-        TableLayoutPanel1.SetColumnSpan(DisplayLabel, 4)
-        DisplayLabel.Dock = DockStyle.Fill
-        DisplayLabel.Font = New Font("Segoe UI Variable Display", 16.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DisplayLabel.ForeColor = Color.Black
-        DisplayLabel.Location = New Point(3, 115)
-        DisplayLabel.Name = "DisplayLabel"
-        DisplayLabel.Size = New Size(497, 115)
-        DisplayLabel.TabIndex = 0
-        DisplayLabel.TextAlign = ContentAlignment.BottomRight
+        CurrentResultLabel.AutoSize = True
+        CurrentResultLabel.BackColor = Color.White
+        TableLayoutPanel1.SetColumnSpan(CurrentResultLabel, 4)
+        CurrentResultLabel.Dock = DockStyle.Fill
+        CurrentResultLabel.Font = New Font("Segoe UI Variable Display", 16.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        CurrentResultLabel.ForeColor = Color.Black
+        CurrentResultLabel.Location = New Point(3, 115)
+        CurrentResultLabel.Name = "CurrentResultLabel"
+        CurrentResultLabel.Size = New Size(497, 115)
+        CurrentResultLabel.TabIndex = 0
+        CurrentResultLabel.TextAlign = ContentAlignment.BottomRight
         ' 
         ' Button1
         ' 
@@ -390,7 +394,7 @@ Partial Class Calculator
     End Sub
 
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Public WithEvents DisplayLabel As Label
+    Public WithEvents CurrentResultLabel As Label
     Friend WithEvents DivideBtn As Button
     Friend WithEvents EqualBtn As Button
     Friend WithEvents Button0 As Button
@@ -409,5 +413,5 @@ Partial Class Calculator
     Friend WithEvents BackspaceBtn As Button
     Friend WithEvents ClrBtn As Button
     Friend WithEvents DecimalBtn As Button
-    Public WithEvents Label1 As Label
+    Public WithEvents PreviousResultLabel As Label
 End Class
