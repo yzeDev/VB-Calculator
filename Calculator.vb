@@ -12,7 +12,6 @@
 
     ' ========= NUMBER BUTTONS =========
     Private Const MaxLength As Integer = 16
-
     Private Sub NumberButton_Click(sender As Object, e As EventArgs) _
     Handles Button0.Click, Button1.Click, Button2.Click, Button3.Click,
          Button4.Click, Button5.Click, Button6.Click, Button7.Click,
@@ -75,7 +74,7 @@
                     If secondNum <> 0 Then
                         result = firstNum / secondNum
                     Else
-                        CurrentResultLabel.Text = "Cannot divide by zero!"
+                        CurrentResultLabel.Text = "Math Error!"
                         Exit Sub
                     End If
             End Select
@@ -129,7 +128,7 @@
                 result = firstNum * secondNum
             Case "÷", "/"
                 If secondNum = 0 Then
-                    CurrentResultLabel.Text = "Cannot divide by zero!"
+                    CurrentResultLabel.Text = "Math Error!"
                     CurrentResultLabel.Select()
                     Return
                 End If
@@ -329,6 +328,5 @@
 
         Return input ' If parsing fails, just return original
     End Function
-
 
 End Class
