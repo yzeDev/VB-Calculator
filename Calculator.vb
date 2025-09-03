@@ -11,46 +11,49 @@
     End Sub
 
     ' ========= NUMBER BUTTONS =========
+    Private Const MaxLength As Integer = 16
+
     Private Sub NumberButton_Click(sender As Object, e As EventArgs) _
     Handles Button0.Click, Button1.Click, Button2.Click, Button3.Click,
-            Button4.Click, Button5.Click, Button6.Click, Button7.Click,
-            Button8.Click, Button9.Click, DecimalBtn.Click
+         Button4.Click, Button5.Click, Button6.Click, Button7.Click,
+         Button8.Click, Button9.Click, DecimalBtn.Click
 
         Dim btn As Button = CType(sender, Button)
 
+        ' Reset if previous result was shown
         If hasResult Then
             CurrentResultLabel.Text = ""
             PreviousResultLabel.Text = ""
             hasResult = False
         End If
 
+        ' Prevent exceeding max length
+        If CurrentResultLabel.Text.Length >= MaxLength Then
+            Return
+        End If
+
+        ' Decimal handling
         If btn.Text = "." Then
+            ' Prevent multiple decimals in current number
             If CurrentResultLabel.Text.Contains(".") Then
                 Return
             End If
 
+            ' If starting with a decimal, prepend 0
             If CurrentResultLabel.Text = "" Then
                 CurrentResultLabel.Text = "0"
             End If
         End If
 
-        ' Prevent multiple decimals in the current number
-        If btn.Text = "." Then
-            If CurrentResultLabel.Text.Contains(".") Then
-                Return ' skip adding another decimal
-            End If
-
-            ' If starting with a decimal, add "0." instead of just "."
-            If CurrentResultLabel.Text = "" Then
-                CurrentResultLabel.Text = "0"
-            End If
-        End If
-
+        ' Append the digit or decimal
         CurrentResultLabel.Text &= btn.Text
+        CurrentResultLabel.Text = FormatWithCommas(CurrentResultLabel.Text.Replace(",", ""))
+        AdjustLabelFont(CurrentResultLabel)
+
         CurrentResultLabel.Select()
+        AdjustLabelFont(CurrentResultLabel)
+
     End Sub
-
-
 
     ' ========= OPERATOR BUTTONS =========
     Private Sub OperatorButton_Click(sender As Object, e As EventArgs) _
@@ -72,7 +75,7 @@
                     If secondNum <> 0 Then
                         result = firstNum / secondNum
                     Else
-                        MessageBox.Show("Cannot divide by zero!")
+                        CurrentResultLabel.Text = "Cannot divide by zero!"
                         Exit Sub
                     End If
             End Select
@@ -84,10 +87,14 @@
         ElseIf operation <> "" AndAlso CurrentResultLabel.Text = "" Then
             operation = newOperation
             PreviousResultLabel.Text = firstNum.ToString() & " " & operation
+            AdjustLabelFont(PreviousResultLabel)
+
 
         ElseIf Double.TryParse(CurrentResultLabel.Text, firstNum) Then
             CurrentResultLabel.Text = ""
             PreviousResultLabel.Text = firstNum.ToString() & " " & newOperation
+            AdjustLabelFont(PreviousResultLabel)
+
         End If
 
         operation = newOperation
@@ -122,7 +129,7 @@
                 result = firstNum * secondNum
             Case "÷", "/"
                 If secondNum = 0 Then
-                    MessageBox.Show("Cannot divide by zero!")
+                    CurrentResultLabel.Text = "Cannot divide by zero!"
                     CurrentResultLabel.Select()
                     Return
                 End If
@@ -133,7 +140,9 @@
         End Select
 
         PreviousResultLabel.Text = $"{firstNum} {operation} {secondNum} ="
-        CurrentResultLabel.Text = result.ToString()
+        AdjustLabelFont(PreviousResultLabel)
+        CurrentResultLabel.Text = FormatWithCommas(result.ToString())
+        AdjustLabelFont(CurrentResultLabel)
 
         operation = ""
         firstNum = result
@@ -142,13 +151,25 @@
     End Sub
 
 
-    ' ========= CLEAR BUTTON =========
+    ' ========= CLEAR (C) BUTTON =========
     Private Sub ClrBtn_Click(sender As Object, e As EventArgs) Handles ClrBtn.Click
         PreviousResultLabel.Text = ""
         CurrentResultLabel.Text = ""
+        AdjustLabelFont(CurrentResultLabel, True)
+        AdjustLabelFont(PreviousResultLabel, True)
+
+
         firstNum = 0
         secondNum = 0
         operation = ""
+        hasResult = False
+        CurrentResultLabel.Select()
+    End Sub
+
+    ' ========= CLEAR ENTRY (CE) BUTTON =========
+    Private Sub CeBtn_Click(sender As Object, e As EventArgs) Handles CeBtn.Click
+        ' clears the current entry, not the entire calculation
+        CurrentResultLabel.Text = ""
         hasResult = False
         CurrentResultLabel.Select()
     End Sub
@@ -157,54 +178,78 @@
     Private Sub BackspaceBtn_Click(sender As Object, e As EventArgs) Handles BackspaceBtn.Click
         If Not hasResult AndAlso CurrentResultLabel.Text.Length > 0 Then
             CurrentResultLabel.Text = CurrentResultLabel.Text.Substring(0, CurrentResultLabel.Text.Length - 1)
+            AdjustLabelFont(CurrentResultLabel)
         End If
         CurrentResultLabel.Select()
     End Sub
 
     ' ========= KEYBOARD INPUT =========
-    Private Sub Calculator_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
-        If Char.IsDigit(e.KeyChar) OrElse e.KeyChar = "."c Then
-            NumberButton_Click(New Button() With {.Text = e.KeyChar}, Nothing)
-        End If
+    Private Sub CalculatorForm_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        Dim key As Char = e.KeyChar
 
-        ' Operators
-        Select Case e.KeyChar
-            Case "+"c, "-"c
-                OperatorButton_Click(New Button() With {.Text = e.KeyChar}, Nothing)
+        ' ===== DIGITS & DECIMAL =====
+        If Char.IsDigit(key) OrElse key = "."c Then
 
-            Case "*"c
-                ' Map * to x
-                OperatorButton_Click(New Button() With {.Text = "x"}, Nothing)
-
-            Case "/"c
-                ' Map / to ÷
-                OperatorButton_Click(New Button() With {.Text = "÷"}, Nothing)
-        End Select
-
-        ' Enter (=)
-        If e.KeyChar = ChrW(Keys.Enter) Then
-            EqualBtn_Click(Nothing, Nothing)
-            e.Handled = True
-        End If
-
-        ' Backspace
-        If e.KeyChar = ChrW(Keys.Back) Then
-            BackspaceBtn_Click(Nothing, Nothing)
-            e.Handled = True
-        End If
-
-        If e.KeyChar = "."c Then
-            If CurrentResultLabel.Text.Contains(".") Then
+            ' Prevent exceeding max length
+            If CurrentResultLabel.Text.Length >= MaxLength Then
                 e.Handled = True
                 Return
             End If
-            If CurrentResultLabel.Text = "" Then
-                CurrentResultLabel.Text = "0"
+
+            ' Decimal handling
+            If key = "."c Then
+                If CurrentResultLabel.Text.Contains(".") Then
+                    e.Handled = True
+                    Return
+                End If
+
+                If CurrentResultLabel.Text = "" Then
+                    CurrentResultLabel.Text = "0"
+                End If
             End If
-            CurrentResultLabel.Text &= "."
+
+            ' Append digit/decimal
+            CurrentResultLabel.Text &= key
+
+            ' Format with commas (strip commas first)
+            CurrentResultLabel.Text = FormatWithCommas(CurrentResultLabel.Text.Replace(",", ""))
+
+            AdjustLabelFont(CurrentResultLabel)
+
             e.Handled = True
+            Return
         End If
 
+        ' ===== OPERATORS =====
+        Select Case key
+            Case "+"c, "-"c, "*"c, "/"c
+                Dim opBtn As New Button()
+
+                Select Case key
+                    Case "+"c : opBtn.Text = "+"
+                    Case "-"c : opBtn.Text = "-"
+                    Case "*"c : opBtn.Text = "x"   ' match MultiplyBtn
+                    Case "/"c : opBtn.Text = "÷"   ' match DivideBtn
+                End Select
+
+                OperatorButton_Click(opBtn, EventArgs.Empty)
+                e.Handled = True
+                Return
+        End Select
+
+        ' ===== ENTER (=) =====
+        If key = ChrW(Keys.Enter) OrElse key = "="c Then
+            EqualBtn_Click(EqualBtn, EventArgs.Empty)
+            e.Handled = True
+            Return
+        End If
+
+        ' ===== BACKSPACE =====
+        If key = ChrW(Keys.Back) Then
+            BackspaceBtn_Click(BackspaceBtn, EventArgs.Empty)
+            e.Handled = True
+            Return
+        End If
     End Sub
 
     ' Handles special keys (like numpad multiply/divide)
@@ -231,5 +276,59 @@
                 e.Handled = True
         End Select
     End Sub
+
+    ' ========= FONT AUTO-RESIZE =========
+    Private Sub AdjustLabelFont(targetLabel As Label, Optional reset As Boolean = False)
+        Dim baseFontSize As Single = 26 ' Default for CurrentResultLabel
+        Dim minFontSize As Single = 12  ' Smallest allowed
+
+        If targetLabel.Name = "PreviousResultLabel" Then
+            baseFontSize = 20
+            minFontSize = 10
+        End If
+
+        If reset OrElse String.IsNullOrEmpty(targetLabel.Text) Then
+            targetLabel.Font = New Font(targetLabel.Font.FontFamily, baseFontSize, targetLabel.Font.Style)
+            Return
+        End If
+
+        Dim currentLength As Integer = targetLabel.Text.Length
+        Dim newFontSize As Single = baseFontSize
+
+        If currentLength > 12 Then
+            newFontSize = baseFontSize - (currentLength - 12) * 2
+            If newFontSize < minFontSize Then
+                newFontSize = minFontSize
+            End If
+        End If
+
+        targetLabel.Font = New Font(targetLabel.Font.FontFamily, newFontSize, targetLabel.Font.Style)
+    End Sub
+
+    '========= NUMBER FORMAT =========
+    Private Function FormatWithCommas(input As String) As String
+        ' Don’t format if empty or ends with a decimal point
+        If String.IsNullOrEmpty(input) OrElse input.EndsWith(".") Then
+            Return input
+        End If
+
+        Dim num As Double
+        If Double.TryParse(input, num) Then
+            ' Preserve decimals if any
+            If input.Contains(".") Then
+                Dim parts() As String = input.Split("."c)
+                Dim intPart As Double
+                If Double.TryParse(parts(0), intPart) Then
+                    Return intPart.ToString("N0") & "." & parts(1)
+                End If
+            Else
+                ' Whole numbers
+                Return num.ToString("N0")
+            End If
+        End If
+
+        Return input ' If parsing fails, just return original
+    End Function
+
 
 End Class
