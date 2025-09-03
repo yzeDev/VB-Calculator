@@ -7,7 +7,7 @@ yzeDev & Dlroth
 Current version: v2.0.0  
 
 Update log:  
-V1 Series:
+V1 Series: 
 	- v1.0.0: (Featuring basic MDAS operations)  
 	- v1.0.1: Renamed object names  
 	- v1.0.2: Fixed an issue with buttons focus cues  
