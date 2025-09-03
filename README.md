@@ -19,8 +19,7 @@ V1 Series:
 	- v1.2.6: Fixed an issue with equal logic   
 	- v1.3.6: New GUI design  
 	- v1.3.7: Fixed an issue with the decimal being spammed  
-	
-V2 Series:	
+V2 Series:  
 	- v2.0.0:  
 		-- Complete rewrite of the code to make it cleaner and more efficient  
 		-- Added a new feature to allow the user to see the full expression being calculated  
