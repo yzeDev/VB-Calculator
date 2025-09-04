@@ -11,7 +11,7 @@
     End Sub
 
     ' ========= NUMBER BUTTONS =========
-    Private Const MaxLength As Integer = 16
+    Private Const MaxLength As Integer = 21
     Private Sub NumberButton_Click(sender As Object, e As EventArgs) _
     Handles Button0.Click, Button1.Click, Button2.Click, Button3.Click,
          Button4.Click, Button5.Click, Button6.Click, Button7.Click,
@@ -19,32 +19,27 @@
 
         Dim btn As Button = CType(sender, Button)
 
-        ' Reset if previous result was shown
         If hasResult Then
             CurrentResultLabel.Text = ""
             PreviousResultLabel.Text = ""
             hasResult = False
         End If
 
-        ' Prevent exceeding max length
         If CurrentResultLabel.Text.Length >= MaxLength Then
             Return
         End If
 
         ' Decimal handling
         If btn.Text = "." Then
-            ' Prevent multiple decimals in current number
             If CurrentResultLabel.Text.Contains(".") Then
                 Return
             End If
 
-            ' If starting with a decimal, prepend 0
             If CurrentResultLabel.Text = "" Then
                 CurrentResultLabel.Text = "0"
             End If
         End If
 
-        ' Append the digit or decimal
         CurrentResultLabel.Text &= btn.Text
         CurrentResultLabel.Text = FormatWithCommas(CurrentResultLabel.Text.Replace(",", ""))
         AdjustLabelFont(CurrentResultLabel)
@@ -129,6 +124,7 @@
             Case "÷", "/"
                 If secondNum = 0 Then
                     CurrentResultLabel.Text = "Math Error!"
+                    AdjustLabelFont(CurrentResultLabel)
                     CurrentResultLabel.Select()
                     Return
                 End If
@@ -278,12 +274,12 @@
 
     ' ========= FONT AUTO-RESIZE =========
     Private Sub AdjustLabelFont(targetLabel As Label, Optional reset As Boolean = False)
-        Dim baseFontSize As Single = 26 ' Default for CurrentResultLabel
+        Dim baseFontSize As Single = 34 ' Default for CurrentResultLabel
         Dim minFontSize As Single = 12  ' Smallest allowed
 
         If targetLabel.Name = "PreviousResultLabel" Then
-            baseFontSize = 20
-            minFontSize = 10
+            baseFontSize = 22
+            minFontSize = 11
         End If
 
         If reset OrElse String.IsNullOrEmpty(targetLabel.Text) Then
@@ -294,15 +290,20 @@
         Dim currentLength As Integer = targetLabel.Text.Length
         Dim newFontSize As Single = baseFontSize
 
-        If currentLength > 12 Then
-            newFontSize = baseFontSize - (currentLength - 12) * 2
-            If newFontSize < minFontSize Then
-                newFontSize = minFontSize
-            End If
+        If currentLength > 19 Then
+            newFontSize = baseFontSize - ((currentLength - 19) * 2)
+        End If
+
+        ' Clamp font size between min and base
+        If newFontSize < minFontSize Then
+            newFontSize = minFontSize
+        ElseIf newFontSize > baseFontSize Then
+            newFontSize = baseFontSize
         End If
 
         targetLabel.Font = New Font(targetLabel.Font.FontFamily, newFontSize, targetLabel.Font.Style)
     End Sub
+
 
     '========= NUMBER FORMAT =========
     Private Function FormatWithCommas(input As String) As String

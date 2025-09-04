@@ -25,4 +25,5 @@ v2.0.0:
 		- Added a new feature to allow the user to see the full expression being calculated  
 		- Added a limit to how many characters can be inputted to prevent overflow  
 		- Added a number formatting to the output to make it more readable  
-		- Added clear entry (CE) button to allow the user to clear the current entry
+		- Added clear entry (CE) button to allow the user to clear the current entry  
+	- v2.1.0: Improved the GUI design  
