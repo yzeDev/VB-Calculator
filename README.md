@@ -4,7 +4,7 @@ A Basic Calculator featuring basic MDAS operations. This Project was made for Ob
 Developers:  
 yzeDev & Dlroth
 
-Current version: v2.0.1  
+Current version: v2.0.0  
 
 Update log:  
 V1 Series: 
@@ -20,11 +20,9 @@ V1 Series:
 	- v1.3.6: New GUI design  
 	- v1.3.7: Fixed an issue with the decimal being spammed  
 V2 Series:  
-v2.0.0:
+v2.0.0:  
 		- Complete rewrite of the code to make it cleaner and more efficient  
 		- Added a new feature to allow the user to see the full expression being calculated  
 		- Added a limit to how many characters can be inputted to prevent overflow  
 		- Added a number formatting to the output to make it more readable  
 		- Added clear entry (CE) button to allow the user to clear the current entry
-v2.0.1: 
-		- Minor UI and color changes
