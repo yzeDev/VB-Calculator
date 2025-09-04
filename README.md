@@ -26,5 +26,6 @@ v2.0.0:
 		- Added a limit to how many characters can be inputted to prevent overflow  
 		- Added a number formatting to the output to make it more readable  
 		- Added clear entry (CE) button to allow the user to clear the current entry
+
 v2.0.1: 
 		- Minor UI and color changes
