@@ -13,11 +13,9 @@
     ' ========= NUMBER BUTTONS =========
     Private Const MaxLength As Integer = 21
     Private Sub NumberButton_Click(sender As Object, e As EventArgs) _
-    Handles Button0.Click, Button1.Click, Button2.Click, Button3.Click,
-         Button4.Click, Button5.Click, Button6.Click, Button7.Click,
-         Button8.Click, Button9.Click, DecimalBtn.Click
+    Handles Button0.Click, Button1.Click, Button2.Click, Button3.Click, Button4.Click, Button5.Click, Button6.Click, Button7.Click, Button8.Click, Button9.Click, DecimalBtn.Click
 
-        Dim btn As Button = CType(sender, Button)
+        Dim btn = CType(sender, Button)
 
         If hasResult Then
             CurrentResultLabel.Text = ""
@@ -203,6 +201,15 @@
                 End If
             End If
 
+            If hasResult Then
+                CurrentResultLabel.Text = ""
+                PreviousResultLabel.Text = ""
+                AdjustLabelFont(PreviousResultLabel)
+                AdjustLabelFont(CurrentResultLabel)
+                hasResult = False
+
+            End If
+
             ' Append digit/decimal
             CurrentResultLabel.Text &= key
 
@@ -223,8 +230,8 @@
                 Select Case key
                     Case "+"c : opBtn.Text = "+"
                     Case "-"c : opBtn.Text = "-"
-                    Case "*"c : opBtn.Text = "x"   ' match MultiplyBtn
-                    Case "/"c : opBtn.Text = "÷"   ' match DivideBtn
+                    Case "*"c : opBtn.Text = "x"
+                    Case "/"c : opBtn.Text = "÷"
                 End Select
 
                 OperatorButton_Click(opBtn, EventArgs.Empty)
@@ -330,4 +337,7 @@
         Return input ' If parsing fails, just return original
     End Function
 
+    Private Sub Button10_Click(sender As Object, e As EventArgs)
+
+    End Sub
 End Class

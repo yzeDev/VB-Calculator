@@ -99,7 +99,7 @@ Partial Class Calculator
         ' 
         ' CeBtn
         ' 
-        CeBtn.BackColor = Color.DarkOrange
+        CeBtn.BackColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
         CeBtn.Dock = DockStyle.Fill
         CeBtn.FlatAppearance.BorderSize = 0
         CeBtn.FlatStyle = FlatStyle.Flat
@@ -117,7 +117,7 @@ Partial Class Calculator
         ' PreviousResultLabel
         ' 
         PreviousResultLabel.AutoSize = True
-        PreviousResultLabel.BackColor = Color.Teal
+        PreviousResultLabel.BackColor = SystemColors.ActiveCaptionText
         TableLayoutPanel1.SetColumnSpan(PreviousResultLabel, 4)
         PreviousResultLabel.Dock = DockStyle.Fill
         PreviousResultLabel.Font = New Font("Segoe UI Semibold", 21.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
@@ -131,7 +131,7 @@ Partial Class Calculator
         ' 
         ' DecimalBtn
         ' 
-        DecimalBtn.BackColor = Color.SlateGray
+        DecimalBtn.BackColor = SystemColors.GrayText
         DecimalBtn.Dock = DockStyle.Fill
         DecimalBtn.FlatAppearance.BorderSize = 0
         DecimalBtn.FlatStyle = FlatStyle.Flat
@@ -148,7 +148,7 @@ Partial Class Calculator
         ' 
         ' BackspaceBtn
         ' 
-        BackspaceBtn.BackColor = Color.DarkOrange
+        BackspaceBtn.BackColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
         BackspaceBtn.Dock = DockStyle.Fill
         BackspaceBtn.FlatAppearance.BorderSize = 0
         BackspaceBtn.FlatStyle = FlatStyle.Flat
@@ -165,7 +165,7 @@ Partial Class Calculator
         ' 
         ' ClrBtn
         ' 
-        ClrBtn.BackColor = Color.DarkOrange
+        ClrBtn.BackColor = Color.FromArgb(CByte(64), CByte(64), CByte(64))
         ClrBtn.Dock = DockStyle.Fill
         ClrBtn.FlatAppearance.BorderSize = 0
         ClrBtn.FlatStyle = FlatStyle.Flat
@@ -182,7 +182,7 @@ Partial Class Calculator
         ' 
         ' DivideBtn
         ' 
-        DivideBtn.BackColor = Color.CadetBlue
+        DivideBtn.BackColor = SystemColors.WindowFrame
         DivideBtn.Dock = DockStyle.Fill
         DivideBtn.FlatAppearance.BorderSize = 0
         DivideBtn.FlatStyle = FlatStyle.Flat
@@ -199,7 +199,7 @@ Partial Class Calculator
         ' 
         ' EqualBtn
         ' 
-        EqualBtn.BackColor = Color.Firebrick
+        EqualBtn.BackColor = Color.IndianRed
         TableLayoutPanel1.SetColumnSpan(EqualBtn, 2)
         EqualBtn.Dock = DockStyle.Fill
         EqualBtn.FlatAppearance.BorderSize = 0
@@ -217,7 +217,7 @@ Partial Class Calculator
         ' 
         ' Button0
         ' 
-        Button0.BackColor = Color.SlateGray
+        Button0.BackColor = SystemColors.GrayText
         Button0.Dock = DockStyle.Fill
         Button0.FlatAppearance.BorderSize = 0
         Button0.FlatStyle = FlatStyle.Flat
@@ -234,7 +234,7 @@ Partial Class Calculator
         ' 
         ' MultiplyBtn
         ' 
-        MultiplyBtn.BackColor = Color.CadetBlue
+        MultiplyBtn.BackColor = SystemColors.WindowFrame
         MultiplyBtn.Dock = DockStyle.Fill
         MultiplyBtn.FlatAppearance.BorderSize = 0
         MultiplyBtn.FlatStyle = FlatStyle.Flat
@@ -251,7 +251,7 @@ Partial Class Calculator
         ' 
         ' Button9
         ' 
-        Button9.BackColor = Color.SlateGray
+        Button9.BackColor = SystemColors.GrayText
         Button9.Dock = DockStyle.Fill
         Button9.FlatAppearance.BorderSize = 0
         Button9.FlatStyle = FlatStyle.Flat
@@ -268,7 +268,7 @@ Partial Class Calculator
         ' 
         ' Button8
         ' 
-        Button8.BackColor = Color.SlateGray
+        Button8.BackColor = SystemColors.GrayText
         Button8.Dock = DockStyle.Fill
         Button8.FlatAppearance.BorderSize = 0
         Button8.FlatStyle = FlatStyle.Flat
@@ -285,7 +285,7 @@ Partial Class Calculator
         ' 
         ' Button7
         ' 
-        Button7.BackColor = Color.SlateGray
+        Button7.BackColor = SystemColors.GrayText
         Button7.Dock = DockStyle.Fill
         Button7.FlatAppearance.BorderSize = 0
         Button7.FlatStyle = FlatStyle.Flat
@@ -302,7 +302,7 @@ Partial Class Calculator
         ' 
         ' MinusBtn
         ' 
-        MinusBtn.BackColor = Color.CadetBlue
+        MinusBtn.BackColor = SystemColors.WindowFrame
         MinusBtn.Dock = DockStyle.Fill
         MinusBtn.FlatAppearance.BorderSize = 0
         MinusBtn.FlatStyle = FlatStyle.Flat
@@ -319,7 +319,7 @@ Partial Class Calculator
         ' 
         ' Button6
         ' 
-        Button6.BackColor = Color.SlateGray
+        Button6.BackColor = SystemColors.GrayText
         Button6.Dock = DockStyle.Fill
         Button6.FlatAppearance.BorderSize = 0
         Button6.FlatStyle = FlatStyle.Flat
@@ -336,7 +336,7 @@ Partial Class Calculator
         ' 
         ' Button5
         ' 
-        Button5.BackColor = Color.SlateGray
+        Button5.BackColor = SystemColors.GrayText
         Button5.Dock = DockStyle.Fill
         Button5.FlatAppearance.BorderSize = 0
         Button5.FlatStyle = FlatStyle.Flat
@@ -353,7 +353,7 @@ Partial Class Calculator
         ' 
         ' Button4
         ' 
-        Button4.BackColor = Color.SlateGray
+        Button4.BackColor = SystemColors.GrayText
         Button4.Dock = DockStyle.Fill
         Button4.FlatAppearance.BorderSize = 0
         Button4.FlatStyle = FlatStyle.Flat
@@ -370,7 +370,7 @@ Partial Class Calculator
         ' 
         ' PlusBtn
         ' 
-        PlusBtn.BackColor = Color.CadetBlue
+        PlusBtn.BackColor = SystemColors.WindowFrame
         PlusBtn.Dock = DockStyle.Fill
         PlusBtn.FlatAppearance.BorderSize = 0
         PlusBtn.FlatStyle = FlatStyle.Flat
@@ -387,7 +387,7 @@ Partial Class Calculator
         ' 
         ' Button3
         ' 
-        Button3.BackColor = Color.SlateGray
+        Button3.BackColor = SystemColors.GrayText
         Button3.Dock = DockStyle.Fill
         Button3.FlatAppearance.BorderSize = 0
         Button3.FlatStyle = FlatStyle.Flat
@@ -405,7 +405,7 @@ Partial Class Calculator
         ' Button2
         ' 
         Button2.AutoSize = True
-        Button2.BackColor = Color.SlateGray
+        Button2.BackColor = SystemColors.GrayText
         Button2.Dock = DockStyle.Fill
         Button2.FlatAppearance.BorderSize = 0
         Button2.FlatStyle = FlatStyle.Flat
@@ -424,7 +424,7 @@ Partial Class Calculator
         ' 
         CurrentResultLabel.AutoEllipsis = True
         CurrentResultLabel.AutoSize = True
-        CurrentResultLabel.BackColor = Color.Teal
+        CurrentResultLabel.BackColor = SystemColors.ActiveCaptionText
         TableLayoutPanel1.SetColumnSpan(CurrentResultLabel, 4)
         CurrentResultLabel.Dock = DockStyle.Fill
         CurrentResultLabel.Font = New Font("Segoe UI", 27.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
@@ -438,7 +438,7 @@ Partial Class Calculator
         ' 
         ' Button1
         ' 
-        Button1.BackColor = Color.SlateGray
+        Button1.BackColor = SystemColors.GrayText
         Button1.Dock = DockStyle.Fill
         Button1.FlatAppearance.BorderSize = 0
         Button1.FlatStyle = FlatStyle.Flat
@@ -462,7 +462,6 @@ Partial Class Calculator
         ClientSize = New Size(494, 761)
         Controls.Add(TableLayoutPanel1)
         Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         KeyPreview = True
         Margin = New Padding(2, 4, 2, 4)
