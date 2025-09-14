@@ -4,7 +4,7 @@ A Basic Calculator featuring basic MDAS operations. This Project was made for Ob
 Developers:  
 yzeDev & Dlroth
 
-Current version: v2.2.0  (FINAL)
+Current version: v2.2.1  (FINAL)
 
 Update log:  
 V1 Series: 
