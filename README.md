@@ -4,7 +4,7 @@ A Basic Calculator featuring basic MDAS operations. This Project was made for Ob
 Developers:  
 yzeDev & Dlroth
 
-Current version: v2.1.0  
+Current version: v2.2.0  (FINAL)
 
 Update log:  
 V1 Series: 
@@ -26,4 +26,5 @@ v2.0.0:
 		- Added a limit to how many characters can be inputted to prevent overflow  
 		- Added a number formatting to the output to make it more readable  
 		- Added clear entry (CE) button to allow the user to clear the current entry  
-	- v2.1.0: Improved the GUI design  
+	- v2.1.0: Improved the GUI design
+	- v2.2.0: Added reverse sign button to allow the user to change the sign of the current entry  

@@ -45,6 +45,7 @@ Partial Class Calculator
         Button2 = New Button()
         CurrentResultLabel = New Label()
         Button1 = New Button()
+        ReverseBtn = New Button()
         TableLayoutPanel1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -59,13 +60,14 @@ Partial Class Calculator
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Absolute, 20F))
+        TableLayoutPanel1.Controls.Add(ReverseBtn, 2, 6)
         TableLayoutPanel1.Controls.Add(CeBtn, 0, 2)
         TableLayoutPanel1.Controls.Add(PreviousResultLabel, 0, 0)
         TableLayoutPanel1.Controls.Add(DecimalBtn, 0, 6)
         TableLayoutPanel1.Controls.Add(BackspaceBtn, 2, 2)
         TableLayoutPanel1.Controls.Add(ClrBtn, 1, 2)
         TableLayoutPanel1.Controls.Add(DivideBtn, 3, 5)
-        TableLayoutPanel1.Controls.Add(EqualBtn, 2, 6)
+        TableLayoutPanel1.Controls.Add(EqualBtn, 3, 6)
         TableLayoutPanel1.Controls.Add(Button0, 1, 6)
         TableLayoutPanel1.Controls.Add(MultiplyBtn, 3, 4)
         TableLayoutPanel1.Controls.Add(Button9, 2, 5)
@@ -200,16 +202,15 @@ Partial Class Calculator
         ' EqualBtn
         ' 
         EqualBtn.BackColor = Color.IndianRed
-        TableLayoutPanel1.SetColumnSpan(EqualBtn, 2)
         EqualBtn.Dock = DockStyle.Fill
         EqualBtn.FlatAppearance.BorderSize = 0
         EqualBtn.FlatStyle = FlatStyle.Flat
         EqualBtn.Font = New Font("Segoe UI Semibold", 20.25F, FontStyle.Bold)
         EqualBtn.ForeColor = SystemColors.ControlLightLight
-        EqualBtn.Location = New Point(246, 650)
+        EqualBtn.Location = New Point(369, 650)
         EqualBtn.Margin = New Padding(0)
         EqualBtn.Name = "EqualBtn"
-        EqualBtn.Size = New Size(248, 111)
+        EqualBtn.Size = New Size(125, 111)
         EqualBtn.TabIndex = 15
         EqualBtn.TabStop = False
         EqualBtn.Text = "="
@@ -453,9 +454,26 @@ Partial Class Calculator
         Button1.Text = "1"
         Button1.UseVisualStyleBackColor = False
         ' 
+        ' ReverseBtn
+        ' 
+        ReverseBtn.BackColor = SystemColors.GrayText
+        ReverseBtn.Dock = DockStyle.Fill
+        ReverseBtn.FlatAppearance.BorderSize = 0
+        ReverseBtn.FlatStyle = FlatStyle.Flat
+        ReverseBtn.Font = New Font("Segoe UI Semibold", 20.25F, FontStyle.Bold)
+        ReverseBtn.ForeColor = SystemColors.ControlLightLight
+        ReverseBtn.Location = New Point(246, 650)
+        ReverseBtn.Margin = New Padding(0)
+        ReverseBtn.Name = "ReverseBtn"
+        ReverseBtn.Size = New Size(123, 111)
+        ReverseBtn.TabIndex = 22
+        ReverseBtn.TabStop = False
+        ReverseBtn.Text = "-/+"
+        ReverseBtn.UseVisualStyleBackColor = False
+        ' 
         ' Calculator
         ' 
-        AutoScaleDimensions = New SizeF(96F, 96F)
+        AutoScaleDimensions = New SizeF(120F, 120F)
         AutoScaleMode = AutoScaleMode.Dpi
         BackColor = SystemColors.WindowFrame
         BackgroundImageLayout = ImageLayout.Center
@@ -498,4 +516,5 @@ Partial Class Calculator
     Friend WithEvents DecimalBtn As Button
     Public WithEvents PreviousResultLabel As Label
     Friend WithEvents CeBtn As Button
+    Friend WithEvents ReverseBtn As Button
 End Class

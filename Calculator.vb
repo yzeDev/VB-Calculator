@@ -337,7 +337,23 @@
         Return input ' If parsing fails, just return original
     End Function
 
-    Private Sub Button10_Click(sender As Object, e As EventArgs)
+    Private Sub ReverseBtn_Click(sender As Object, e As EventArgs) Handles ReverseBtn.Click
+        If hasResult Then
+            PreviousResultLabel.Text = ""
+            hasResult = False
+        End If
 
+        If CurrentResultLabel.Text = "" Then
+            Return
+        End If
+
+        Dim value As String = CurrentResultLabel.Text.Trim()
+
+        If value.StartsWith("-") Then
+            CurrentResultLabel.Text = value.Substring(1)
+        Else
+            CurrentResultLabel.Text = "-" & value
+        End If
     End Sub
+
 End Class
